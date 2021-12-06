@@ -16,8 +16,8 @@ Pod::Spec.new do |s|
   s.requires_arc     = true
   s.static_framework = true
 
-  s.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 i386' }
-  s.pod_target_xcconfig  = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 i386' }
+  s.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }
+  s.pod_target_xcconfig  = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }
   
   s.private_header_files = "src/*/Private/*.h"
   s.public_header_files  = "src/**/*.h"
