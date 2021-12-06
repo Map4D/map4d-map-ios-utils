@@ -9,16 +9,16 @@
 Utility Library for [Map4dMap iOS SDK](https://cocoapods.org/pods/Map4dMap).  
 Contains:
 
-- Marker clustering — handles the display of a large number of points
+- Marker Cluster: handles the display of a large number of markers
 
 ## Requirements
 
-- iOS 9.0+
+- iOS 9.3+
 
 ## Installation
 
-Map4dMapUtils is available through [CocoaPods](https://cocoapods.org). To install
-it, simply add the following line to your Podfile:
+Map4dMapUtils is available through [CocoaPods](https://cocoapods.org).  
+To install it, simply add the following line to your Podfile:
 
 ```ruby
 pod 'Map4dMapUtils'
