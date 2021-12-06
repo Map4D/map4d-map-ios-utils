@@ -76,7 +76,7 @@ static const double kMFUClusterWaitIntervalSeconds = 0.2;
 - (BOOL)mapview:(MFMapView *)mapView didTapMarker:(MFMarker *)marker {
   if ([_delegate respondsToSelector:@selector(clusterManager:didTapCluster:)] &&
       [marker.userData conformsToProtocol:@protocol(MFUCluster)]) {
-    id<MFUCluster> cluster = marker.userData;
+    id<MFUCluster> cluster = (id<MFUCluster>)marker.userData;
     if ([_delegate clusterManager:self didTapCluster:cluster]) {
       return YES;
     }
@@ -84,7 +84,7 @@ static const double kMFUClusterWaitIntervalSeconds = 0.2;
 
   if ([_delegate respondsToSelector:@selector(clusterManager:didTapClusterItem:)] &&
       [marker.userData conformsToProtocol:@protocol(MFUClusterItem)]) {
-    id<MFUClusterItem> clusterItem = marker.userData;
+    id<MFUClusterItem> clusterItem = (id<MFUClusterItem>)marker.userData;
     if ([_delegate clusterManager:self didTapClusterItem:clusterItem]) {
       return YES;
     }

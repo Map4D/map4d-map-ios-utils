@@ -136,7 +136,7 @@ static const double kMFUAnimationDuration = 0.5;  // seconds.
     // Find a candidate cluster to animate to.
     id<MFUCluster> toCluster = nil;
     if ([marker.userData conformsToProtocol:@protocol(MFUCluster)]) {
-      id<MFUCluster> cluster = marker.userData;
+      id<MFUCluster> cluster = (id<MFUCluster>)marker.userData;
       toCluster = [self overlappingClusterForCluster:cluster itemMap:_itemToNewClusterMap];
     } else {
       MFUWrappingDictionaryKey *key =
