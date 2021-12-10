@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
   s.version          = '0.1.0'
   s.summary          = 'A utilities library for use with Map4dMap SDK for iOS.'
   s.description      = <<-DESC
-                        A utilities library for use with Map4dMap SDK for iOS.
+  This library contains classes that are useful for a wide range of applications using the Map4dMap SDK for iOS.
                        DESC
 
   s.author           = 'IOTLink'
