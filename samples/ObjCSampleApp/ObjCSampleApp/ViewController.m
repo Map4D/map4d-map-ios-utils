@@ -80,6 +80,8 @@ static const double kCameraLongitude = 108.032432;
     CLLocationCoordinate2D position = CLLocationCoordinate2DMake(lat, lng);
     MFMarker *marker = [[MFMarker alloc] init];
     marker.position = position;
+    // marker.icon = [UIImage imageNamed:@"ic_marker_tracking"];
+    // marker.userInteractionEnabled = NO;
     [_clusterManager addItem:(id<MFUClusterItem>)marker];
   }
 }
