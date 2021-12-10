@@ -1,41 +1,41 @@
 #import <Foundation/Foundation.h>
 
-#import "MFUClusterRenderer.h"
+#import "MFClusterRenderer.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @class MFMapView;
 @class MFMarker;
 
-@protocol MFUCluster;
-@protocol MFUClusterIconGenerator;
-@protocol MFUClusterRenderer;
+@protocol MFCluster;
+@protocol MFClusterIconGenerator;
+@protocol MFClusterRenderer;
 
 /**
- * Delegate for id<MFUClusterRenderer> to provide extra functionality to the default
+ * Delegate for id<MFClusterRenderer> to provide extra functionality to the default
  * renderer.
  */
-@protocol MFUClusterRendererDelegate<NSObject>
+@protocol MFClusterRendererDelegate<NSObject>
 
 @optional
 
 /**
- * Returns a marker for an |object|. The |object| can be either an id<MFUCluster>
- * or an id<MFUClusterItem>. Use this delegate to control of the life cycle of
+ * Returns a marker for an |object|. The |object| can be either an id<MFCluster>
+ * or an id<MFClusterItem>. Use this delegate to control of the life cycle of
  * the marker. Any properties set on the returned marker will be honoured except
  * for: .position, .icon, .groundAnchor, .zIndex and .userData. To customize
  * these properties use renderer:willRenderMarker.
  * Note that changing a marker's position is not recommended because it will
  * interfere with the marker animation.
  */
-- (nullable MFMarker *)renderer:(id<MFUClusterRenderer>)renderer markerForObject:(id)object;
+- (nullable MFMarker *)renderer:(id<MFClusterRenderer>)renderer markerForObject:(id)object;
 
 /**
  * Raised when a marker (for a cluster or an item) is about to be added to the map.
  * Use the marker.userData property to check whether it is a cluster marker or an
  * item marker.
  */
-- (void)renderer:(id<MFUClusterRenderer>)renderer willRenderMarker:(MFMarker *)marker;
+- (void)renderer:(id<MFClusterRenderer>)renderer willRenderMarker:(MFMarker *)marker;
 
 /**
  * Raised when a marker (for a cluster or an item) has just been added to the map
@@ -43,7 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
  * Use the marker.userData property to check whether it is a cluster marker or an
  * item marker.
  */
-- (void)renderer:(id<MFUClusterRenderer>)renderer didRenderMarker:(MFMarker *)marker;
+- (void)renderer:(id<MFClusterRenderer>)renderer didRenderMarker:(MFMarker *)marker;
 
 @end
 
@@ -54,7 +54,7 @@ NS_ASSUME_NONNULL_BEGIN
  * There is also some performance optimization where only clusters within the visisble
  * region are shown.
  */
-@interface MFUDefaultClusterRenderer : NSObject<MFUClusterRenderer>
+@interface MFDefaultClusterRenderer : NSObject<MFClusterRenderer>
 
 /**
  * Creates a new cluster renderer with a given map view and icon generator.
@@ -63,7 +63,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param iconGenerator The icon generator to use. Can be subclassed if required.
  */
 - (instancetype)initWithMapView:(MFMapView *)mapView
-           clusterIconGenerator:(id<MFUClusterIconGenerator>)iconGenerator;
+           clusterIconGenerator:(id<MFClusterIconGenerator>)iconGenerator;
 
 /**
  * Animates the clusters to achieve splitting (when zooming in) and merging
@@ -129,7 +129,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic) int zIndex;
 
 /** Sets to further customize the renderer. */
-@property(nonatomic, nullable, weak) id<MFUClusterRendererDelegate> delegate;
+@property(nonatomic, nullable, weak) id<MFClusterRendererDelegate> delegate;
 
 /**
  * Returns currently active markers.
@@ -140,7 +140,7 @@ NS_ASSUME_NONNULL_BEGIN
  * If returns NO, cluster items will be expanded and rendered as normal markers.
  * Subclass can override this method to provide custom logic.
  */
-- (BOOL)shouldRenderAsCluster:(id<MFUCluster>)cluster atZoom:(float)zoom;
+- (BOOL)shouldRenderAsCluster:(id<MFCluster>)cluster atZoom:(float)zoom;
 
 @end
 

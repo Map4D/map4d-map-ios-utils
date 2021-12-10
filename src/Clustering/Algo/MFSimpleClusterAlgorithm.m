@@ -2,15 +2,15 @@
 #error "This file requires ARC support."
 #endif
 
-#import "MFUSimpleClusterAlgorithm.h"
+#import "MFSimpleClusterAlgorithm.h"
 
-#import "MFUStaticCluster.h"
-#import "MFUClusterItem.h"
+#import "MFStaticCluster.h"
+#import "MFClusterItem.h"
 
 static const NSUInteger kClusterCount = 10;
 
-@implementation MFUSimpleClusterAlgorithm {
-  NSMutableArray<id<MFUClusterItem>> *_items;
+@implementation MFSimpleClusterAlgorithm {
+  NSMutableArray<id<MFClusterItem>> *_items;
 }
 
 - (instancetype)init {
@@ -20,11 +20,11 @@ static const NSUInteger kClusterCount = 10;
   return self;
 }
 
-- (void)addItems:(NSArray<id<MFUClusterItem>> *)items {
+- (void)addItems:(NSArray<id<MFClusterItem>> *)items {
   [_items addObjectsFromArray:items];
 }
 
-- (void)removeItem:(id<MFUClusterItem>)item {
+- (void)removeItem:(id<MFClusterItem>)item {
   [_items removeObject:item];
 }
 
@@ -32,20 +32,20 @@ static const NSUInteger kClusterCount = 10;
   [_items removeAllObjects];
 }
 
-- (NSArray<id<MFUCluster>> *)clustersAtZoom:(float)zoom {
-  NSMutableArray<id<MFUCluster>> *clusters =
+- (NSArray<id<MFCluster>> *)clustersAtZoom:(float)zoom {
+  NSMutableArray<id<MFCluster>> *clusters =
       [[NSMutableArray alloc] initWithCapacity:kClusterCount];
 
   for (int i = 0; i < kClusterCount; ++i) {
     if (i >= _items.count) break;
-    id<MFUClusterItem> item = _items[i];
-    [clusters addObject:[[MFUStaticCluster alloc] initWithPosition:item.position]];
+    id<MFClusterItem> item = _items[i];
+    [clusters addObject:[[MFStaticCluster alloc] initWithPosition:item.position]];
   }
 
   NSUInteger clusterIndex = 0;
   for (int i = kClusterCount; i < _items.count; ++i) {
-    id<MFUClusterItem> item = _items[i];
-    MFUStaticCluster *cluster = clusters[clusterIndex % kClusterCount];
+    id<MFClusterItem> item = _items[i];
+    MFStaticCluster *cluster = clusters[clusterIndex % kClusterCount];
     [cluster addItem:item];
     ++clusterIndex;
   }

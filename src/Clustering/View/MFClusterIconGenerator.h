@@ -4,7 +4,7 @@
 /**
  * Defines a contract for cluster icon generation.
  */
-@protocol MFUClusterIconGenerator<NSObject>
+@protocol MFClusterIconGenerator<NSObject>
 
 /**
  * Generates an icon with the given size.

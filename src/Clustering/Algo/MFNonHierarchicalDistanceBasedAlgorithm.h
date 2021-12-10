@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
 
-#import "MFUClusterAlgorithm.h"
+#import "MFClusterAlgorithm.h"
 
 /**
  * A simple clustering algorithm with O(nlog n) performance. Resulting clusters are not
@@ -13,10 +13,10 @@
  * 5. Remove those items from the list of candidate clusters.
  * Clusters have the center of the first element (not the centroid of the items within it).
  */
-@interface MFUNonHierarchicalDistanceBasedAlgorithm : NSObject<MFUClusterAlgorithm>
+@interface MFNonHierarchicalDistanceBasedAlgorithm : NSObject<MFClusterAlgorithm>
 
 /**
- * Initializes this MFUNonHierarchicalDistanceBasedAlgorithm with clusterDistancePoints for
+ * Initializes this MFNonHierarchicalDistanceBasedAlgorithm with clusterDistancePoints for
  * the distance it uses to cluster items (default is 100).
  */
 - (instancetype)initWithClusterDistancePoints:(NSUInteger)clusterDistancePoints;

@@ -15,32 +15,32 @@
 		E572E68D275A731600EE8B91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E572E68C275A731600EE8B91 /* Assets.xcassets */; };
 		E572E690275A731600EE8B91 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E572E68E275A731600EE8B91 /* LaunchScreen.storyboard */; };
 		E572E693275A731600EE8B91 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E572E692275A731600EE8B91 /* main.m */; };
-		E572E6C2275A825700EE8B91 /* MFUGeometryUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = E572E69B275A825700EE8B91 /* MFUGeometryUtils.h */; };
-		E572E6C3275A825700EE8B91 /* MFUGeometryUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E572E69C275A825700EE8B91 /* MFUGeometryUtils.m */; };
-		E572E6C4275A825700EE8B91 /* MFUClusterManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E572E69D275A825700EE8B91 /* MFUClusterManager.h */; };
-		E572E6C5275A825700EE8B91 /* MFMarker+MFUClusterItem.h in Headers */ = {isa = PBXBuildFile; fileRef = E572E69E275A825700EE8B91 /* MFMarker+MFUClusterItem.h */; };
-		E572E6C6275A825700EE8B91 /* MFUClusterItem.h in Headers */ = {isa = PBXBuildFile; fileRef = E572E69F275A825700EE8B91 /* MFUClusterItem.h */; };
+		E572E6C2275A825700EE8B91 /* MFGeometryUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = E572E69B275A825700EE8B91 /* MFGeometryUtils.h */; };
+		E572E6C3275A825700EE8B91 /* MFGeometryUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E572E69C275A825700EE8B91 /* MFGeometryUtils.m */; };
+		E572E6C4275A825700EE8B91 /* MFClusterManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E572E69D275A825700EE8B91 /* MFClusterManager.h */; };
+		E572E6C5275A825700EE8B91 /* MFMarker+MFClusterItem.h in Headers */ = {isa = PBXBuildFile; fileRef = E572E69E275A825700EE8B91 /* MFMarker+MFClusterItem.h */; };
+		E572E6C6275A825700EE8B91 /* MFClusterItem.h in Headers */ = {isa = PBXBuildFile; fileRef = E572E69F275A825700EE8B91 /* MFClusterItem.h */; };
 		E572E6C7275A825700EE8B91 /* MarkerCluster.h in Headers */ = {isa = PBXBuildFile; fileRef = E572E6A0275A825700EE8B91 /* MarkerCluster.h */; };
-		E572E6C9275A825700EE8B91 /* MFUClusterAlgorithm.h in Headers */ = {isa = PBXBuildFile; fileRef = E572E6A3275A825700EE8B91 /* MFUClusterAlgorithm.h */; };
-		E572E6CA275A825700EE8B91 /* MFUSimpleClusterAlgorithm.h in Headers */ = {isa = PBXBuildFile; fileRef = E572E6A4275A825700EE8B91 /* MFUSimpleClusterAlgorithm.h */; };
-		E572E6CB275A825700EE8B91 /* MFUNonHierarchicalDistanceBasedAlgorithm.m in Sources */ = {isa = PBXBuildFile; fileRef = E572E6A5275A825700EE8B91 /* MFUNonHierarchicalDistanceBasedAlgorithm.m */; };
-		E572E6CC275A825700EE8B91 /* MFUWrappingDictionaryKey.h in Headers */ = {isa = PBXBuildFile; fileRef = E572E6A6275A825700EE8B91 /* MFUWrappingDictionaryKey.h */; };
-		E572E6CD275A825700EE8B91 /* MFUGridBasedClusterAlgorithm.h in Headers */ = {isa = PBXBuildFile; fileRef = E572E6A7275A825700EE8B91 /* MFUGridBasedClusterAlgorithm.h */; };
-		E572E6CE275A825700EE8B91 /* MFUWrappingDictionaryKey.m in Sources */ = {isa = PBXBuildFile; fileRef = E572E6A8275A825700EE8B91 /* MFUWrappingDictionaryKey.m */; };
-		E572E6CF275A825700EE8B91 /* MFUNonHierarchicalDistanceBasedAlgorithm.h in Headers */ = {isa = PBXBuildFile; fileRef = E572E6A9275A825700EE8B91 /* MFUNonHierarchicalDistanceBasedAlgorithm.h */; };
-		E572E6D0275A825700EE8B91 /* MFUSimpleClusterAlgorithm.m in Sources */ = {isa = PBXBuildFile; fileRef = E572E6AA275A825700EE8B91 /* MFUSimpleClusterAlgorithm.m */; };
-		E572E6D1275A825700EE8B91 /* MFUGridBasedClusterAlgorithm.m in Sources */ = {isa = PBXBuildFile; fileRef = E572E6AB275A825700EE8B91 /* MFUGridBasedClusterAlgorithm.m */; };
-		E572E6D2275A825700EE8B91 /* MFUStaticCluster.m in Sources */ = {isa = PBXBuildFile; fileRef = E572E6AC275A825700EE8B91 /* MFUStaticCluster.m */; };
-		E572E6D3275A825700EE8B91 /* MFUClusterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E572E6AD275A825700EE8B91 /* MFUClusterManager.m */; };
-		E572E6D4275A825700EE8B91 /* MFUClusterRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = E572E6AF275A825700EE8B91 /* MFUClusterRenderer.h */; };
-		E572E6D5275A825700EE8B91 /* MFUDefaultClusterIconGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = E572E6B0275A825700EE8B91 /* MFUDefaultClusterIconGenerator.m */; };
-		E572E6D7275A825700EE8B91 /* MFUDefaultClusterRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = E572E6B2275A825700EE8B91 /* MFUDefaultClusterRenderer.h */; };
-		E572E6D8275A825700EE8B91 /* MFUDefaultClusterIconGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = E572E6B3275A825700EE8B91 /* MFUDefaultClusterIconGenerator.h */; };
-		E572E6D9275A825700EE8B91 /* MFUDefaultClusterRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = E572E6B4275A825700EE8B91 /* MFUDefaultClusterRenderer.m */; };
-		E572E6DB275A825700EE8B91 /* MFUClusterIconGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = E572E6B6275A825700EE8B91 /* MFUClusterIconGenerator.h */; };
-		E572E6DC275A825700EE8B91 /* MFMarker+MFUClusterItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E572E6B7275A825700EE8B91 /* MFMarker+MFUClusterItem.m */; };
-		E572E6DD275A825700EE8B91 /* MFUCluster.h in Headers */ = {isa = PBXBuildFile; fileRef = E572E6B8275A825700EE8B91 /* MFUCluster.h */; };
-		E572E6DE275A825700EE8B91 /* MFUStaticCluster.h in Headers */ = {isa = PBXBuildFile; fileRef = E572E6B9275A825700EE8B91 /* MFUStaticCluster.h */; };
+		E572E6C9275A825700EE8B91 /* MFClusterAlgorithm.h in Headers */ = {isa = PBXBuildFile; fileRef = E572E6A3275A825700EE8B91 /* MFClusterAlgorithm.h */; };
+		E572E6CA275A825700EE8B91 /* MFSimpleClusterAlgorithm.h in Headers */ = {isa = PBXBuildFile; fileRef = E572E6A4275A825700EE8B91 /* MFSimpleClusterAlgorithm.h */; };
+		E572E6CB275A825700EE8B91 /* MFNonHierarchicalDistanceBasedAlgorithm.m in Sources */ = {isa = PBXBuildFile; fileRef = E572E6A5275A825700EE8B91 /* MFNonHierarchicalDistanceBasedAlgorithm.m */; };
+		E572E6CC275A825700EE8B91 /* MFWrappingDictionaryKey.h in Headers */ = {isa = PBXBuildFile; fileRef = E572E6A6275A825700EE8B91 /* MFWrappingDictionaryKey.h */; };
+		E572E6CD275A825700EE8B91 /* MFGridBasedClusterAlgorithm.h in Headers */ = {isa = PBXBuildFile; fileRef = E572E6A7275A825700EE8B91 /* MFGridBasedClusterAlgorithm.h */; };
+		E572E6CE275A825700EE8B91 /* MFWrappingDictionaryKey.m in Sources */ = {isa = PBXBuildFile; fileRef = E572E6A8275A825700EE8B91 /* MFWrappingDictionaryKey.m */; };
+		E572E6CF275A825700EE8B91 /* MFNonHierarchicalDistanceBasedAlgorithm.h in Headers */ = {isa = PBXBuildFile; fileRef = E572E6A9275A825700EE8B91 /* MFNonHierarchicalDistanceBasedAlgorithm.h */; };
+		E572E6D0275A825700EE8B91 /* MFSimpleClusterAlgorithm.m in Sources */ = {isa = PBXBuildFile; fileRef = E572E6AA275A825700EE8B91 /* MFSimpleClusterAlgorithm.m */; };
+		E572E6D1275A825700EE8B91 /* MFGridBasedClusterAlgorithm.m in Sources */ = {isa = PBXBuildFile; fileRef = E572E6AB275A825700EE8B91 /* MFGridBasedClusterAlgorithm.m */; };
+		E572E6D2275A825700EE8B91 /* MFStaticCluster.m in Sources */ = {isa = PBXBuildFile; fileRef = E572E6AC275A825700EE8B91 /* MFStaticCluster.m */; };
+		E572E6D3275A825700EE8B91 /* MFClusterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E572E6AD275A825700EE8B91 /* MFClusterManager.m */; };
+		E572E6D4275A825700EE8B91 /* MFClusterRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = E572E6AF275A825700EE8B91 /* MFClusterRenderer.h */; };
+		E572E6D5275A825700EE8B91 /* MFDefaultClusterIconGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = E572E6B0275A825700EE8B91 /* MFDefaultClusterIconGenerator.m */; };
+		E572E6D7275A825700EE8B91 /* MFDefaultClusterRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = E572E6B2275A825700EE8B91 /* MFDefaultClusterRenderer.h */; };
+		E572E6D8275A825700EE8B91 /* MFDefaultClusterIconGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = E572E6B3275A825700EE8B91 /* MFDefaultClusterIconGenerator.h */; };
+		E572E6D9275A825700EE8B91 /* MFDefaultClusterRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = E572E6B4275A825700EE8B91 /* MFDefaultClusterRenderer.m */; };
+		E572E6DB275A825700EE8B91 /* MFClusterIconGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = E572E6B6275A825700EE8B91 /* MFClusterIconGenerator.h */; };
+		E572E6DC275A825700EE8B91 /* MFMarker+MFClusterItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E572E6B7275A825700EE8B91 /* MFMarker+MFClusterItem.m */; };
+		E572E6DD275A825700EE8B91 /* MFCluster.h in Headers */ = {isa = PBXBuildFile; fileRef = E572E6B8275A825700EE8B91 /* MFCluster.h */; };
+		E572E6DE275A825700EE8B91 /* MFStaticCluster.h in Headers */ = {isa = PBXBuildFile; fileRef = E572E6B9275A825700EE8B91 /* MFStaticCluster.h */; };
 		E572E6DF275A825700EE8B91 /* GQTPointQuadTree.m in Sources */ = {isa = PBXBuildFile; fileRef = E572E6BB275A825700EE8B91 /* GQTPointQuadTree.m */; };
 		E572E6E0275A825700EE8B91 /* GQTPointQuadTreeItem.h in Headers */ = {isa = PBXBuildFile; fileRef = E572E6BC275A825700EE8B91 /* GQTPointQuadTreeItem.h */; };
 		E572E6E1275A825700EE8B91 /* GQTPointQuadTreeChild.m in Sources */ = {isa = PBXBuildFile; fileRef = E572E6BD275A825700EE8B91 /* GQTPointQuadTreeChild.m */; };
@@ -66,32 +66,32 @@
 		E572E68F275A731600EE8B91 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E572E691275A731600EE8B91 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = demo/Info.plist; sourceTree = "<group>"; };
 		E572E692275A731600EE8B91 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = main.m; path = demo/main.m; sourceTree = "<group>"; };
-		E572E69B275A825700EE8B91 /* MFUGeometryUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFUGeometryUtils.h; sourceTree = "<group>"; };
-		E572E69C275A825700EE8B91 /* MFUGeometryUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFUGeometryUtils.m; sourceTree = "<group>"; };
-		E572E69D275A825700EE8B91 /* MFUClusterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFUClusterManager.h; sourceTree = "<group>"; };
-		E572E69E275A825700EE8B91 /* MFMarker+MFUClusterItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MFMarker+MFUClusterItem.h"; sourceTree = "<group>"; };
-		E572E69F275A825700EE8B91 /* MFUClusterItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFUClusterItem.h; sourceTree = "<group>"; };
+		E572E69B275A825700EE8B91 /* MFGeometryUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFGeometryUtils.h; sourceTree = "<group>"; };
+		E572E69C275A825700EE8B91 /* MFGeometryUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFGeometryUtils.m; sourceTree = "<group>"; };
+		E572E69D275A825700EE8B91 /* MFClusterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFClusterManager.h; sourceTree = "<group>"; };
+		E572E69E275A825700EE8B91 /* MFMarker+MFClusterItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MFMarker+MFClusterItem.h"; sourceTree = "<group>"; };
+		E572E69F275A825700EE8B91 /* MFClusterItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFClusterItem.h; sourceTree = "<group>"; };
 		E572E6A0275A825700EE8B91 /* MarkerCluster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarkerCluster.h; sourceTree = "<group>"; };
-		E572E6A3275A825700EE8B91 /* MFUClusterAlgorithm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFUClusterAlgorithm.h; sourceTree = "<group>"; };
-		E572E6A4275A825700EE8B91 /* MFUSimpleClusterAlgorithm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFUSimpleClusterAlgorithm.h; sourceTree = "<group>"; };
-		E572E6A5275A825700EE8B91 /* MFUNonHierarchicalDistanceBasedAlgorithm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFUNonHierarchicalDistanceBasedAlgorithm.m; sourceTree = "<group>"; };
-		E572E6A6275A825700EE8B91 /* MFUWrappingDictionaryKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFUWrappingDictionaryKey.h; sourceTree = "<group>"; };
-		E572E6A7275A825700EE8B91 /* MFUGridBasedClusterAlgorithm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFUGridBasedClusterAlgorithm.h; sourceTree = "<group>"; };
-		E572E6A8275A825700EE8B91 /* MFUWrappingDictionaryKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFUWrappingDictionaryKey.m; sourceTree = "<group>"; };
-		E572E6A9275A825700EE8B91 /* MFUNonHierarchicalDistanceBasedAlgorithm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFUNonHierarchicalDistanceBasedAlgorithm.h; sourceTree = "<group>"; };
-		E572E6AA275A825700EE8B91 /* MFUSimpleClusterAlgorithm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFUSimpleClusterAlgorithm.m; sourceTree = "<group>"; };
-		E572E6AB275A825700EE8B91 /* MFUGridBasedClusterAlgorithm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFUGridBasedClusterAlgorithm.m; sourceTree = "<group>"; };
-		E572E6AC275A825700EE8B91 /* MFUStaticCluster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFUStaticCluster.m; sourceTree = "<group>"; };
-		E572E6AD275A825700EE8B91 /* MFUClusterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFUClusterManager.m; sourceTree = "<group>"; };
-		E572E6AF275A825700EE8B91 /* MFUClusterRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFUClusterRenderer.h; sourceTree = "<group>"; };
-		E572E6B0275A825700EE8B91 /* MFUDefaultClusterIconGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFUDefaultClusterIconGenerator.m; sourceTree = "<group>"; };
-		E572E6B2275A825700EE8B91 /* MFUDefaultClusterRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFUDefaultClusterRenderer.h; sourceTree = "<group>"; };
-		E572E6B3275A825700EE8B91 /* MFUDefaultClusterIconGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFUDefaultClusterIconGenerator.h; sourceTree = "<group>"; };
-		E572E6B4275A825700EE8B91 /* MFUDefaultClusterRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFUDefaultClusterRenderer.m; sourceTree = "<group>"; };
-		E572E6B6275A825700EE8B91 /* MFUClusterIconGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFUClusterIconGenerator.h; sourceTree = "<group>"; };
-		E572E6B7275A825700EE8B91 /* MFMarker+MFUClusterItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MFMarker+MFUClusterItem.m"; sourceTree = "<group>"; };
-		E572E6B8275A825700EE8B91 /* MFUCluster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFUCluster.h; sourceTree = "<group>"; };
-		E572E6B9275A825700EE8B91 /* MFUStaticCluster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFUStaticCluster.h; sourceTree = "<group>"; };
+		E572E6A3275A825700EE8B91 /* MFClusterAlgorithm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFClusterAlgorithm.h; sourceTree = "<group>"; };
+		E572E6A4275A825700EE8B91 /* MFSimpleClusterAlgorithm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFSimpleClusterAlgorithm.h; sourceTree = "<group>"; };
+		E572E6A5275A825700EE8B91 /* MFNonHierarchicalDistanceBasedAlgorithm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFNonHierarchicalDistanceBasedAlgorithm.m; sourceTree = "<group>"; };
+		E572E6A6275A825700EE8B91 /* MFWrappingDictionaryKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFWrappingDictionaryKey.h; sourceTree = "<group>"; };
+		E572E6A7275A825700EE8B91 /* MFGridBasedClusterAlgorithm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFGridBasedClusterAlgorithm.h; sourceTree = "<group>"; };
+		E572E6A8275A825700EE8B91 /* MFWrappingDictionaryKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFWrappingDictionaryKey.m; sourceTree = "<group>"; };
+		E572E6A9275A825700EE8B91 /* MFNonHierarchicalDistanceBasedAlgorithm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFNonHierarchicalDistanceBasedAlgorithm.h; sourceTree = "<group>"; };
+		E572E6AA275A825700EE8B91 /* MFSimpleClusterAlgorithm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFSimpleClusterAlgorithm.m; sourceTree = "<group>"; };
+		E572E6AB275A825700EE8B91 /* MFGridBasedClusterAlgorithm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFGridBasedClusterAlgorithm.m; sourceTree = "<group>"; };
+		E572E6AC275A825700EE8B91 /* MFStaticCluster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFStaticCluster.m; sourceTree = "<group>"; };
+		E572E6AD275A825700EE8B91 /* MFClusterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFClusterManager.m; sourceTree = "<group>"; };
+		E572E6AF275A825700EE8B91 /* MFClusterRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFClusterRenderer.h; sourceTree = "<group>"; };
+		E572E6B0275A825700EE8B91 /* MFDefaultClusterIconGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFDefaultClusterIconGenerator.m; sourceTree = "<group>"; };
+		E572E6B2275A825700EE8B91 /* MFDefaultClusterRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFDefaultClusterRenderer.h; sourceTree = "<group>"; };
+		E572E6B3275A825700EE8B91 /* MFDefaultClusterIconGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFDefaultClusterIconGenerator.h; sourceTree = "<group>"; };
+		E572E6B4275A825700EE8B91 /* MFDefaultClusterRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFDefaultClusterRenderer.m; sourceTree = "<group>"; };
+		E572E6B6275A825700EE8B91 /* MFClusterIconGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFClusterIconGenerator.h; sourceTree = "<group>"; };
+		E572E6B7275A825700EE8B91 /* MFMarker+MFClusterItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MFMarker+MFClusterItem.m"; sourceTree = "<group>"; };
+		E572E6B8275A825700EE8B91 /* MFCluster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFCluster.h; sourceTree = "<group>"; };
+		E572E6B9275A825700EE8B91 /* MFStaticCluster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFStaticCluster.h; sourceTree = "<group>"; };
 		E572E6BB275A825700EE8B91 /* GQTPointQuadTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQTPointQuadTree.m; sourceTree = "<group>"; };
 		E572E6BC275A825700EE8B91 /* GQTPointQuadTreeItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQTPointQuadTreeItem.h; sourceTree = "<group>"; };
 		E572E6BD275A825700EE8B91 /* GQTPointQuadTreeChild.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQTPointQuadTreeChild.m; sourceTree = "<group>"; };
@@ -200,14 +200,14 @@
 				E572E69A275A825700EE8B91 /* Private */,
 				E572E6AE275A825700EE8B91 /* View */,
 				E572E6A0275A825700EE8B91 /* MarkerCluster.h */,
-				E572E69D275A825700EE8B91 /* MFUClusterManager.h */,
-				E572E69E275A825700EE8B91 /* MFMarker+MFUClusterItem.h */,
-				E572E69F275A825700EE8B91 /* MFUClusterItem.h */,
-				E572E6AC275A825700EE8B91 /* MFUStaticCluster.m */,
-				E572E6AD275A825700EE8B91 /* MFUClusterManager.m */,
-				E572E6B7275A825700EE8B91 /* MFMarker+MFUClusterItem.m */,
-				E572E6B8275A825700EE8B91 /* MFUCluster.h */,
-				E572E6B9275A825700EE8B91 /* MFUStaticCluster.h */,
+				E572E69D275A825700EE8B91 /* MFClusterManager.h */,
+				E572E69E275A825700EE8B91 /* MFMarker+MFClusterItem.h */,
+				E572E69F275A825700EE8B91 /* MFClusterItem.h */,
+				E572E6AC275A825700EE8B91 /* MFStaticCluster.m */,
+				E572E6AD275A825700EE8B91 /* MFClusterManager.m */,
+				E572E6B7275A825700EE8B91 /* MFMarker+MFClusterItem.m */,
+				E572E6B8275A825700EE8B91 /* MFCluster.h */,
+				E572E6B9275A825700EE8B91 /* MFStaticCluster.h */,
 			);
 			name = Clustering;
 			path = src/Clustering;
@@ -216,8 +216,8 @@
 		E572E69A275A825700EE8B91 /* Private */ = {
 			isa = PBXGroup;
 			children = (
-				E572E69B275A825700EE8B91 /* MFUGeometryUtils.h */,
-				E572E69C275A825700EE8B91 /* MFUGeometryUtils.m */,
+				E572E69B275A825700EE8B91 /* MFGeometryUtils.h */,
+				E572E69C275A825700EE8B91 /* MFGeometryUtils.m */,
 			);
 			path = Private;
 			sourceTree = "<group>";
@@ -225,15 +225,15 @@
 		E572E6A2275A825700EE8B91 /* Algo */ = {
 			isa = PBXGroup;
 			children = (
-				E572E6A3275A825700EE8B91 /* MFUClusterAlgorithm.h */,
-				E572E6A4275A825700EE8B91 /* MFUSimpleClusterAlgorithm.h */,
-				E572E6A5275A825700EE8B91 /* MFUNonHierarchicalDistanceBasedAlgorithm.m */,
-				E572E6A6275A825700EE8B91 /* MFUWrappingDictionaryKey.h */,
-				E572E6A7275A825700EE8B91 /* MFUGridBasedClusterAlgorithm.h */,
-				E572E6A8275A825700EE8B91 /* MFUWrappingDictionaryKey.m */,
-				E572E6A9275A825700EE8B91 /* MFUNonHierarchicalDistanceBasedAlgorithm.h */,
-				E572E6AA275A825700EE8B91 /* MFUSimpleClusterAlgorithm.m */,
-				E572E6AB275A825700EE8B91 /* MFUGridBasedClusterAlgorithm.m */,
+				E572E6A3275A825700EE8B91 /* MFClusterAlgorithm.h */,
+				E572E6A4275A825700EE8B91 /* MFSimpleClusterAlgorithm.h */,
+				E572E6A5275A825700EE8B91 /* MFNonHierarchicalDistanceBasedAlgorithm.m */,
+				E572E6A6275A825700EE8B91 /* MFWrappingDictionaryKey.h */,
+				E572E6A7275A825700EE8B91 /* MFGridBasedClusterAlgorithm.h */,
+				E572E6A8275A825700EE8B91 /* MFWrappingDictionaryKey.m */,
+				E572E6A9275A825700EE8B91 /* MFNonHierarchicalDistanceBasedAlgorithm.h */,
+				E572E6AA275A825700EE8B91 /* MFSimpleClusterAlgorithm.m */,
+				E572E6AB275A825700EE8B91 /* MFGridBasedClusterAlgorithm.m */,
 			);
 			path = Algo;
 			sourceTree = "<group>";
@@ -241,12 +241,12 @@
 		E572E6AE275A825700EE8B91 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				E572E6AF275A825700EE8B91 /* MFUClusterRenderer.h */,
-				E572E6B0275A825700EE8B91 /* MFUDefaultClusterIconGenerator.m */,
-				E572E6B2275A825700EE8B91 /* MFUDefaultClusterRenderer.h */,
-				E572E6B3275A825700EE8B91 /* MFUDefaultClusterIconGenerator.h */,
-				E572E6B4275A825700EE8B91 /* MFUDefaultClusterRenderer.m */,
-				E572E6B6275A825700EE8B91 /* MFUClusterIconGenerator.h */,
+				E572E6AF275A825700EE8B91 /* MFClusterRenderer.h */,
+				E572E6B0275A825700EE8B91 /* MFDefaultClusterIconGenerator.m */,
+				E572E6B2275A825700EE8B91 /* MFDefaultClusterRenderer.h */,
+				E572E6B3275A825700EE8B91 /* MFDefaultClusterIconGenerator.h */,
+				E572E6B4275A825700EE8B91 /* MFDefaultClusterRenderer.m */,
+				E572E6B6275A825700EE8B91 /* MFClusterIconGenerator.h */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -273,28 +273,28 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E572E6C5275A825700EE8B91 /* MFMarker+MFUClusterItem.h in Headers */,
-				E572E6CA275A825700EE8B91 /* MFUSimpleClusterAlgorithm.h in Headers */,
+				E572E6C5275A825700EE8B91 /* MFMarker+MFClusterItem.h in Headers */,
+				E572E6CA275A825700EE8B91 /* MFSimpleClusterAlgorithm.h in Headers */,
 				E572E6E4275A825700EE8B91 /* GQTPointQuadTreeChild.h in Headers */,
 				E572E6E5275A825700EE8B91 /* GQTBounds.h in Headers */,
-				E572E6D7275A825700EE8B91 /* MFUDefaultClusterRenderer.h in Headers */,
-				E572E6DD275A825700EE8B91 /* MFUCluster.h in Headers */,
-				E572E6C4275A825700EE8B91 /* MFUClusterManager.h in Headers */,
+				E572E6D7275A825700EE8B91 /* MFDefaultClusterRenderer.h in Headers */,
+				E572E6DD275A825700EE8B91 /* MFCluster.h in Headers */,
+				E572E6C4275A825700EE8B91 /* MFClusterManager.h in Headers */,
 				E572E6E2275A825700EE8B91 /* GQTPoint.h in Headers */,
-				E572E6DE275A825700EE8B91 /* MFUStaticCluster.h in Headers */,
-				E572E6C6275A825700EE8B91 /* MFUClusterItem.h in Headers */,
+				E572E6DE275A825700EE8B91 /* MFStaticCluster.h in Headers */,
+				E572E6C6275A825700EE8B91 /* MFClusterItem.h in Headers */,
 				E572E6E0275A825700EE8B91 /* GQTPointQuadTreeItem.h in Headers */,
-				E572E6C9275A825700EE8B91 /* MFUClusterAlgorithm.h in Headers */,
+				E572E6C9275A825700EE8B91 /* MFClusterAlgorithm.h in Headers */,
 				E572E674275A711800EE8B91 /* Map4dMapUtils.h in Headers */,
-				E572E6D4275A825700EE8B91 /* MFUClusterRenderer.h in Headers */,
-				E572E6DB275A825700EE8B91 /* MFUClusterIconGenerator.h in Headers */,
-				E572E6D8275A825700EE8B91 /* MFUDefaultClusterIconGenerator.h in Headers */,
-				E572E6CC275A825700EE8B91 /* MFUWrappingDictionaryKey.h in Headers */,
+				E572E6D4275A825700EE8B91 /* MFClusterRenderer.h in Headers */,
+				E572E6DB275A825700EE8B91 /* MFClusterIconGenerator.h in Headers */,
+				E572E6D8275A825700EE8B91 /* MFDefaultClusterIconGenerator.h in Headers */,
+				E572E6CC275A825700EE8B91 /* MFWrappingDictionaryKey.h in Headers */,
 				E572E6C7275A825700EE8B91 /* MarkerCluster.h in Headers */,
 				E572E6E3275A825700EE8B91 /* GQTPointQuadTree.h in Headers */,
-				E572E6CD275A825700EE8B91 /* MFUGridBasedClusterAlgorithm.h in Headers */,
-				E572E6C2275A825700EE8B91 /* MFUGeometryUtils.h in Headers */,
-				E572E6CF275A825700EE8B91 /* MFUNonHierarchicalDistanceBasedAlgorithm.h in Headers */,
+				E572E6CD275A825700EE8B91 /* MFGridBasedClusterAlgorithm.h in Headers */,
+				E572E6C2275A825700EE8B91 /* MFGeometryUtils.h in Headers */,
+				E572E6CF275A825700EE8B91 /* MFNonHierarchicalDistanceBasedAlgorithm.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,17 +440,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E572E6CB275A825700EE8B91 /* MFUNonHierarchicalDistanceBasedAlgorithm.m in Sources */,
-				E572E6D2275A825700EE8B91 /* MFUStaticCluster.m in Sources */,
+				E572E6CB275A825700EE8B91 /* MFNonHierarchicalDistanceBasedAlgorithm.m in Sources */,
+				E572E6D2275A825700EE8B91 /* MFStaticCluster.m in Sources */,
 				E572E6DF275A825700EE8B91 /* GQTPointQuadTree.m in Sources */,
-				E572E6D9275A825700EE8B91 /* MFUDefaultClusterRenderer.m in Sources */,
-				E572E6D0275A825700EE8B91 /* MFUSimpleClusterAlgorithm.m in Sources */,
-				E572E6C3275A825700EE8B91 /* MFUGeometryUtils.m in Sources */,
-				E572E6DC275A825700EE8B91 /* MFMarker+MFUClusterItem.m in Sources */,
-				E572E6D5275A825700EE8B91 /* MFUDefaultClusterIconGenerator.m in Sources */,
-				E572E6D3275A825700EE8B91 /* MFUClusterManager.m in Sources */,
-				E572E6CE275A825700EE8B91 /* MFUWrappingDictionaryKey.m in Sources */,
-				E572E6D1275A825700EE8B91 /* MFUGridBasedClusterAlgorithm.m in Sources */,
+				E572E6D9275A825700EE8B91 /* MFDefaultClusterRenderer.m in Sources */,
+				E572E6D0275A825700EE8B91 /* MFSimpleClusterAlgorithm.m in Sources */,
+				E572E6C3275A825700EE8B91 /* MFGeometryUtils.m in Sources */,
+				E572E6DC275A825700EE8B91 /* MFMarker+MFClusterItem.m in Sources */,
+				E572E6D5275A825700EE8B91 /* MFDefaultClusterIconGenerator.m in Sources */,
+				E572E6D3275A825700EE8B91 /* MFClusterManager.m in Sources */,
+				E572E6CE275A825700EE8B91 /* MFWrappingDictionaryKey.m in Sources */,
+				E572E6D1275A825700EE8B91 /* MFGridBasedClusterAlgorithm.m in Sources */,
 				E572E6E1275A825700EE8B91 /* GQTPointQuadTreeChild.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

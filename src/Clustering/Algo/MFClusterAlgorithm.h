@@ -1,21 +1,21 @@
 #import <Foundation/Foundation.h>
 
-#import "MFUCluster.h"
-#import "MFUClusterItem.h"
+#import "MFCluster.h"
+#import "MFClusterItem.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 /**
  * Generic protocol for arranging cluster items into groups.
  */
-@protocol MFUClusterAlgorithm<NSObject>
+@protocol MFClusterAlgorithm<NSObject>
 
-- (void)addItems:(NSArray<id<MFUClusterItem>> *)items;
+- (void)addItems:(NSArray<id<MFClusterItem>> *)items;
 
 /**
  * Removes an item.
  */
-- (void)removeItem:(id<MFUClusterItem>)item;
+- (void)removeItem:(id<MFClusterItem>)item;
 
 /**
  * Clears all items.
@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * Returns the set of clusters of the added items.
  */
-- (NSArray<id<MFUCluster>> *)clustersAtZoom:(float)zoom;
+- (NSArray<id<MFCluster>> *)clustersAtZoom:(float)zoom;
 
 @end
 

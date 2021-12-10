@@ -1,14 +1,14 @@
 #import <CoreLocation/CoreLocation.h>
 #import <Foundation/Foundation.h>
 
-#import "MFUClusterItem.h"
+#import "MFClusterItem.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 /**
  * Defines a generic cluster object.
  */
-@protocol MFUCluster <NSObject>
+@protocol MFCluster <NSObject>
 
 /**
  * Returns the position of the cluster.
@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * Returns a copy of the list of items in the cluster.
  */
-@property(nonatomic, readonly) NSArray<id<MFUClusterItem>> *items;
+@property(nonatomic, readonly) NSArray<id<MFClusterItem>> *items;
 
 @end
 

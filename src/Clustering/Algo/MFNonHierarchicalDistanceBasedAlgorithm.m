@@ -2,37 +2,37 @@
 #error "This file requires ARC support."
 #endif
 
-#import "MFUNonHierarchicalDistanceBasedAlgorithm.h"
+#import "MFNonHierarchicalDistanceBasedAlgorithm.h"
 
-#import "MFUGeometryUtils.h"
+#import "MFGeometryUtils.h"
 
-#import "MFUStaticCluster.h"
-#import "MFUClusterItem.h"
-#import "MFUWrappingDictionaryKey.h"
+#import "MFStaticCluster.h"
+#import "MFClusterItem.h"
+#import "MFWrappingDictionaryKey.h"
 #import "GQTPointQuadTree.h"
 
-static const NSUInteger kMFUDefaultClusterDistancePoints = 100;
-static const double kMFUMapPointWidth = 2.0;  // MapPoint is in a [-1,1]x[-1,1] space.
+static const NSUInteger kMFDefaultClusterDistancePoints = 100;
+static const double kMFMapPointWidth = 2.0;  // MapPoint is in a [-1,1]x[-1,1] space.
 
 #pragma mark Utilities Classes
 
-@interface MFUClusterItemQuadItem : NSObject<GQTPointQuadTreeItem>
+@interface MFClusterItemQuadItem : NSObject<GQTPointQuadTreeItem>
 
-@property(nonatomic, readonly) id<MFUClusterItem> clusterItem;
+@property(nonatomic, readonly) id<MFClusterItem> clusterItem;
 
-- (instancetype)initWithClusterItem:(id<MFUClusterItem>)clusterItem;
+- (instancetype)initWithClusterItem:(id<MFClusterItem>)clusterItem;
 
 @end
 
-@implementation MFUClusterItemQuadItem {
-  id<MFUClusterItem> _clusterItem;
+@implementation MFClusterItemQuadItem {
+  id<MFClusterItem> _clusterItem;
   GQTPoint _clusterItemPoint;
 }
 
-- (instancetype)initWithClusterItem:(id<MFUClusterItem>)clusterItem {
+- (instancetype)initWithClusterItem:(id<MFClusterItem>)clusterItem {
   if ((self = [super init])) {
     _clusterItem = clusterItem;
-    MFUMapPoint point = MFUProject(clusterItem.position);
+    MFMapPoint point = MFProject(clusterItem.position);
     _clusterItemPoint.x = point.x;
     _clusterItemPoint.y = point.y;
   }
@@ -54,22 +54,22 @@ static const double kMFUMapPointWidth = 2.0;  // MapPoint is in a [-1,1]x[-1,1] 
 
   if ([object class] != [self class]) return NO;
 
-  MFUClusterItemQuadItem *other = (MFUClusterItemQuadItem *)object;
+  MFClusterItemQuadItem *other = (MFClusterItemQuadItem *)object;
   return [_clusterItem isEqual:other->_clusterItem];
 }
 
 @end
 
-#pragma mark MFUNonHierarchicalDistanceBasedAlgorithm
+#pragma mark MFNonHierarchicalDistanceBasedAlgorithm
 
-@implementation MFUNonHierarchicalDistanceBasedAlgorithm {
-  NSMutableArray<id<MFUClusterItem>> *_items;
+@implementation MFNonHierarchicalDistanceBasedAlgorithm {
+  NSMutableArray<id<MFClusterItem>> *_items;
   GQTPointQuadTree *_quadTree;
   NSUInteger _clusterDistancePoints;
 }
 
 - (instancetype)init {
-  return [self initWithClusterDistancePoints:kMFUDefaultClusterDistancePoints];
+  return [self initWithClusterDistancePoints:kMFDefaultClusterDistancePoints];
 }
 
 - (instancetype)initWithClusterDistancePoints:(NSUInteger)clusterDistancePoints {
@@ -82,10 +82,10 @@ static const double kMFUMapPointWidth = 2.0;  // MapPoint is in a [-1,1]x[-1,1] 
     return self;
 }
 
-- (void)addItems:(NSArray<id<MFUClusterItem>> *)items {
+- (void)addItems:(NSArray<id<MFClusterItem>> *)items {
   [_items addObjectsFromArray:items];
-  for (id<MFUClusterItem> item in items) {
-    MFUClusterItemQuadItem *quadItem = [[MFUClusterItemQuadItem alloc] initWithClusterItem:item];
+  for (id<MFClusterItem> item in items) {
+    MFClusterItemQuadItem *quadItem = [[MFClusterItemQuadItem alloc] initWithClusterItem:item];
     [_quadTree add:quadItem];
   }
 }
@@ -93,11 +93,11 @@ static const double kMFUMapPointWidth = 2.0;  // MapPoint is in a [-1,1]x[-1,1] 
 /**
  * Removes an item.
  */
-- (void)removeItem:(id<MFUClusterItem>)item {
+- (void)removeItem:(id<MFClusterItem>)item {
   [_items removeObject:item];
 
-  MFUClusterItemQuadItem *quadItem = [[MFUClusterItemQuadItem alloc] initWithClusterItem:item];
-  // This should remove the corresponding quad item since MFUClusterItemQuadItem forwards its hash
+  MFClusterItemQuadItem *quadItem = [[MFClusterItemQuadItem alloc] initWithClusterItem:item];
+  // This should remove the corresponding quad item since MFClusterItemQuadItem forwards its hash
   // and isEqual to the underlying item.
   [_quadTree remove:quadItem];
 }
@@ -113,31 +113,31 @@ static const double kMFUMapPointWidth = 2.0;  // MapPoint is in a [-1,1]x[-1,1] 
 /**
  * Returns the set of clusters of the added items.
  */
-- (NSArray<id<MFUCluster>> *)clustersAtZoom:(float)zoom {
-  NSMutableArray<id<MFUCluster>> *clusters = [[NSMutableArray alloc] init];
-  NSMutableDictionary<MFUWrappingDictionaryKey *, id<MFUCluster>> *itemToClusterMap =
+- (NSArray<id<MFCluster>> *)clustersAtZoom:(float)zoom {
+  NSMutableArray<id<MFCluster>> *clusters = [[NSMutableArray alloc] init];
+  NSMutableDictionary<MFWrappingDictionaryKey *, id<MFCluster>> *itemToClusterMap =
       [[NSMutableDictionary alloc] init];
-  NSMutableDictionary<MFUWrappingDictionaryKey *, NSNumber *> *itemToClusterDistanceMap =
+  NSMutableDictionary<MFWrappingDictionaryKey *, NSNumber *> *itemToClusterDistanceMap =
       [[NSMutableDictionary alloc] init];
-  NSMutableSet<id<MFUClusterItem>> *processedItems = [[NSMutableSet alloc] init];
+  NSMutableSet<id<MFClusterItem>> *processedItems = [[NSMutableSet alloc] init];
 
-  for (id<MFUClusterItem> item in _items) {
+  for (id<MFClusterItem> item in _items) {
     if ([processedItems containsObject:item]) continue;
 
-    MFUStaticCluster *cluster = [[MFUStaticCluster alloc] initWithPosition:item.position];
+    MFStaticCluster *cluster = [[MFStaticCluster alloc] initWithPosition:item.position];
 
-    MFUMapPoint point = MFUProject(item.position);
+    MFMapPoint point = MFProject(item.position);
 
     // Query for items within a fixed point distance from the current item to make up a cluster
     // around it.
-    double radius = _clusterDistancePoints * kMFUMapPointWidth / pow(2.0, zoom + 8.0);
+    double radius = _clusterDistancePoints * kMFMapPointWidth / pow(2.0, zoom + 8.0);
     GQTBounds bounds = {point.x - radius, point.y - radius, point.x + radius, point.y + radius};
     NSArray *nearbyItems = [_quadTree searchWithBounds:bounds];
-    for (MFUClusterItemQuadItem *quadItem in nearbyItems) {
-      id<MFUClusterItem> nearbyItem = quadItem.clusterItem;
+    for (MFClusterItemQuadItem *quadItem in nearbyItems) {
+      id<MFClusterItem> nearbyItem = quadItem.clusterItem;
       [processedItems addObject:nearbyItem];
-      MFUMapPoint nearbyItemPoint = MFUProject(nearbyItem.position);
-      MFUWrappingDictionaryKey *key = [[MFUWrappingDictionaryKey alloc] initWithObject:nearbyItem];
+      MFMapPoint nearbyItemPoint = MFProject(nearbyItem.position);
+      MFWrappingDictionaryKey *key = [[MFWrappingDictionaryKey alloc] initWithObject:nearbyItem];
 
       NSNumber *existingDistance = [itemToClusterDistanceMap objectForKey:key];
       double distanceSquared = [self distanceSquaredBetweenPointA:point andPointB:nearbyItemPoint];
@@ -146,7 +146,7 @@ static const double kMFUMapPointWidth = 2.0;  // MapPoint is in a [-1,1]x[-1,1] 
           // Already belongs to a closer cluster.
           continue;
         }
-        MFUStaticCluster *existingCluster = [itemToClusterMap objectForKey:key];
+        MFStaticCluster *existingCluster = [itemToClusterMap objectForKey:key];
         [existingCluster removeItem:nearbyItem];
       }
       NSNumber *number = [NSNumber numberWithDouble:distanceSquared];
@@ -163,7 +163,7 @@ static const double kMFUMapPointWidth = 2.0;  // MapPoint is in a [-1,1]x[-1,1] 
 
 #if DEBUG
   NSUInteger totalCount = 0;
-  for (id<MFUCluster> cluster in clusters) {
+  for (id<MFCluster> cluster in clusters) {
     totalCount += cluster.count;
   }
   NSAssert(_items.count == totalCount, @"All clusters combined should make up original item set");
@@ -173,7 +173,7 @@ static const double kMFUMapPointWidth = 2.0;  // MapPoint is in a [-1,1]x[-1,1] 
 
 #pragma mark Private
 
-- (double)distanceSquaredBetweenPointA:(MFUMapPoint)pointA andPointB:(MFUMapPoint)pointB {
+- (double)distanceSquaredBetweenPointA:(MFMapPoint)pointA andPointB:(MFMapPoint)pointB {
   double deltaX = pointA.x - pointB.x;
   double deltaY = pointA.y - pointB.y;
   return deltaX * deltaX + deltaY * deltaY;

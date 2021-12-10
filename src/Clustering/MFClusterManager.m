@@ -1,13 +1,13 @@
-#import "MFUClusterManager.h"
+#import "MFClusterManager.h"
 
-#import "MFUClusterRenderer.h"
-#import "MFUSimpleClusterAlgorithm.h"
+#import "MFClusterRenderer.h"
+#import "MFSimpleClusterAlgorithm.h"
 
 // How long to wait for a cluster request before actually performing the clustering operation
 // to avoid continuous clustering when the camera is moving which can affect performance.
-static const double kMFUClusterWaitIntervalSeconds = 0.2;
+static const double kMFClusterWaitIntervalSeconds = 0.2;
 
-@implementation MFUClusterManager {
+@implementation MFClusterManager {
   // The map view that this object is associated with.
   MFMapView *_mapView;
 
@@ -18,14 +18,14 @@ static const double kMFUClusterWaitIntervalSeconds = 0.2;
   NSUInteger _clusterRequestCount;
 
   // Renderer.
-  id<MFUClusterRenderer> _renderer;
+  id<MFClusterRenderer> _renderer;
 }
 
 - (instancetype)initWithMap:(MFMapView *)mapView
-                  algorithm:(id<MFUClusterAlgorithm>)algorithm
-                   renderer:(id<MFUClusterRenderer>)renderer {
+                  algorithm:(id<MFClusterAlgorithm>)algorithm
+                   renderer:(id<MFClusterRenderer>)renderer {
   if ((self = [super init])) {
-    _algorithm = [[MFUSimpleClusterAlgorithm alloc] init];
+    _algorithm = [[MFSimpleClusterAlgorithm alloc] init];
     _mapView = mapView;
     _previousCamera = _mapView.camera;
     _algorithm = algorithm;
@@ -40,22 +40,22 @@ static const double kMFUClusterWaitIntervalSeconds = 0.2;
   _mapDelegate = mapDelegate;
 }
 
-- (void)setDelegate:(id<MFUClusterManagerDelegate>)delegate
+- (void)setDelegate:(id<MFClusterManagerDelegate>)delegate
         mapDelegate:(id<MFMapViewDelegate> _Nullable)mapDelegate {
   _delegate = delegate;
   _mapView.delegate = self;
   _mapDelegate = mapDelegate;
 }
 
-- (void)addItem:(id<MFUClusterItem>)item {
+- (void)addItem:(id<MFClusterItem>)item {
   [_algorithm addItems:[[NSMutableArray alloc] initWithObjects:item, nil]];
 }
 
-- (void)addItems:(NSArray<id<MFUClusterItem>> *)items {
+- (void)addItems:(NSArray<id<MFClusterItem>> *)items {
   [_algorithm addItems:items];
 }
 
-- (void)removeItem:(id<MFUClusterItem>)item {
+- (void)removeItem:(id<MFClusterItem>)item {
   [_algorithm removeItem:item];
 }
 
@@ -66,7 +66,7 @@ static const double kMFUClusterWaitIntervalSeconds = 0.2;
 
 - (void)cluster {
   NSUInteger integralZoom = (NSUInteger)floorf(_mapView.camera.zoom + 0.5f);
-  NSArray<id<MFUCluster>> *clusters = [_algorithm clustersAtZoom:integralZoom];
+  NSArray<id<MFCluster>> *clusters = [_algorithm clustersAtZoom:integralZoom];
   [_renderer renderClusters:clusters];
   _previousCamera = _mapView.camera;
 }
@@ -75,16 +75,16 @@ static const double kMFUClusterWaitIntervalSeconds = 0.2;
 
 - (BOOL)mapview:(MFMapView *)mapView didTapMarker:(MFMarker *)marker {
   if ([_delegate respondsToSelector:@selector(clusterManager:didTapCluster:)] &&
-      [marker.userData conformsToProtocol:@protocol(MFUCluster)]) {
-    id<MFUCluster> cluster = (id<MFUCluster>)marker.userData;
+      [marker.userData conformsToProtocol:@protocol(MFCluster)]) {
+    id<MFCluster> cluster = (id<MFCluster>)marker.userData;
     if ([_delegate clusterManager:self didTapCluster:cluster]) {
       return YES;
     }
   }
 
   if ([_delegate respondsToSelector:@selector(clusterManager:didTapClusterItem:)] &&
-      [marker.userData conformsToProtocol:@protocol(MFUClusterItem)]) {
-    id<MFUClusterItem> clusterItem = (id<MFUClusterItem>)marker.userData;
+      [marker.userData conformsToProtocol:@protocol(MFClusterItem)]) {
+    id<MFClusterItem> clusterItem = (id<MFClusterItem>)marker.userData;
     if ([_delegate clusterManager:self didTapClusterItem:clusterItem]) {
       return YES;
     }
@@ -275,13 +275,13 @@ static const double kMFUClusterWaitIntervalSeconds = 0.2;
 }
 
 - (void)requestCluster {
-  __weak MFUClusterManager *weakSelf = self;
+  __weak MFClusterManager *weakSelf = self;
   ++_clusterRequestCount;
   NSUInteger requestNumber = _clusterRequestCount;
   dispatch_after(
-      dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kMFUClusterWaitIntervalSeconds * NSEC_PER_SEC)),
+      dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kMFClusterWaitIntervalSeconds * NSEC_PER_SEC)),
       dispatch_get_main_queue(), ^{
-        MFUClusterManager *strongSelf = weakSelf;
+        MFClusterManager *strongSelf = weakSelf;
         if (strongSelf == nil) {
           return;
         }

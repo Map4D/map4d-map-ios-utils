@@ -19,7 +19,7 @@ static const double kCameraLongitude = 108.032432;
 
 @implementation ViewController {
   MFMapView *_mapView;
-  MFUClusterManager *_clusterManager;
+  MFClusterManager *_clusterManager;
 }
 
 - (void)loadView {
@@ -35,16 +35,16 @@ static const double kCameraLongitude = 108.032432;
   [super viewDidLoad];
   
   // Set up the cluster manager with default icon generator and renderer.
-  id<MFUClusterAlgorithm> algorithm = [[MFUNonHierarchicalDistanceBasedAlgorithm alloc] init];
-  id<MFUClusterIconGenerator> iconGenerator = [[MFUDefaultClusterIconGenerator alloc] init];
-  id<MFUClusterRenderer> renderer =
-      [[MFUDefaultClusterRenderer alloc] initWithMapView:_mapView
+  id<MFClusterAlgorithm> algorithm = [[MFNonHierarchicalDistanceBasedAlgorithm alloc] init];
+  id<MFClusterIconGenerator> iconGenerator = [[MFDefaultClusterIconGenerator alloc] init];
+  id<MFClusterRenderer> renderer =
+      [[MFDefaultClusterRenderer alloc] initWithMapView:_mapView
                                     clusterIconGenerator:iconGenerator];
   _clusterManager =
-      [[MFUClusterManager alloc] initWithMap:_mapView algorithm:algorithm renderer:renderer];
+      [[MFClusterManager alloc] initWithMap:_mapView algorithm:algorithm renderer:renderer];
 
   // Register self to listen to MFMapViewDelegate events.
-  [_clusterManager setMapDelegate:self];
+  [_clusterManager setMapDelegate:(id<MFMapViewDelegate>)self];
   
   // Generate and add random items to the cluster manager.
   [self generateClusterItems];
@@ -57,7 +57,7 @@ static const double kCameraLongitude = 108.032432;
 
 - (BOOL)mapview:(MFMapView *)mapView didTapMarker:(MFMarker *)marker {
   [_mapView animateCamera:[MFCameraUpdate setTarget:marker.position]];
-  if ([marker.userData conformsToProtocol:@protocol(MFUCluster)]) {
+  if ([marker.userData conformsToProtocol:@protocol(MFCluster)]) {
     [_mapView animateCamera:[MFCameraUpdate setTarget:_mapView.camera.target
                                                  zoom:_mapView.camera.zoom + 1]];
     NSLog(@"Did tap marker cluster");
@@ -79,7 +79,7 @@ static const double kCameraLongitude = 108.032432;
     CLLocationCoordinate2D position = CLLocationCoordinate2DMake(lat, lng);
     MFMarker *marker = [[MFMarker alloc] init];
     marker.position = position;
-    [_clusterManager addItem:marker];
+    [_clusterManager addItem:(id<MFClusterItem>)marker];
   }
 }
 

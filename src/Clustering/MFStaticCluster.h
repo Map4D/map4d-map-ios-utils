@@ -1,13 +1,13 @@
 #import <Foundation/Foundation.h>
 
-#import "MFUCluster.h"
+#import "MFCluster.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 /**
  * Defines a cluster where its position is fixed upon construction.
  */
-@interface MFUStaticCluster : NSObject <MFUCluster>
+@interface MFStaticCluster : NSObject <MFCluster>
 
 /**
  * The default initializer is not available. Use initWithPosition: instead.
@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)init NS_UNAVAILABLE;
 
 /**
- * Returns a new instance of the MFUStaticCluster class defined by it's position.
+ * Returns a new instance of the MFStaticCluster class defined by it's position.
  */
 - (instancetype)initWithPosition:(CLLocationCoordinate2D)position NS_DESIGNATED_INITIALIZER;
 
@@ -32,17 +32,17 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * Returns a copy of the list of items in the cluster.
  */
-@property(nonatomic, readonly) NSArray<id<MFUClusterItem>> *items;
+@property(nonatomic, readonly) NSArray<id<MFClusterItem>> *items;
 
 /**
  * Adds an item to the cluster.
  */
-- (void)addItem:(id<MFUClusterItem>)item;
+- (void)addItem:(id<MFClusterItem>)item;
 
 /**
  * Removes an item to the cluster.
  */
-- (void)removeItem:(id<MFUClusterItem>)item;
+- (void)removeItem:(id<MFClusterItem>)item;
 
 @end
 

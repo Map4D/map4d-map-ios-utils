@@ -4,21 +4,21 @@
 
 #import <Map4dMap/Map4dMap.h>
 
-#import "MFUDefaultClusterRenderer.h"
-#import "MFUClusterIconGenerator.h"
-#import "MFUWrappingDictionaryKey.h"
+#import "MFDefaultClusterRenderer.h"
+#import "MFClusterIconGenerator.h"
+#import "MFWrappingDictionaryKey.h"
 
 // Clusters smaller than this threshold will be expanded.
-static const NSUInteger kMFUMinClusterSize = 4;
+static const NSUInteger kMFMinClusterSize = 4;
 
 // At zooms above this level, clusters will be expanded.
 // This is to prevent cases where items are so close to each other than they are always grouped.
-static const float kMFUMaxClusterZoom = 20;
+static const float kMFMaxClusterZoom = 20;
 
 // Animation duration for marker splitting/merging effects.
-static const double kMFUAnimationDuration = 0.5;  // seconds.
+static const double kMFAnimationDuration = 0.5;  // seconds.
 
-@implementation MFUDefaultClusterRenderer {
+@implementation MFDefaultClusterRenderer {
   // Map view to render clusters on.
   __weak MFMapView *_mapView;
 
@@ -26,10 +26,10 @@ static const double kMFUAnimationDuration = 0.5;  // seconds.
   NSMutableArray<MFMarker *> *_mutableMarkers;
 
   // Icon generator used to create cluster icon.
-  id<MFUClusterIconGenerator> _clusterIconGenerator;
+  id<MFClusterIconGenerator> _clusterIconGenerator;
 
   // Current clusters being rendered.
-  NSArray<id<MFUCluster>> *_clusters;
+  NSArray<id<MFCluster>> *_clusters;
 
   // Tracks clusters that have been rendered to the map.
   NSMutableSet *_renderedClusters;
@@ -41,14 +41,14 @@ static const double kMFUAnimationDuration = 0.5;  // seconds.
   float _previousZoom;
 
   // Lookup map from cluster item to an old cluster.
-  NSMutableDictionary<MFUWrappingDictionaryKey *, id<MFUCluster>> *_itemToOldClusterMap;
+  NSMutableDictionary<MFWrappingDictionaryKey *, id<MFCluster>> *_itemToOldClusterMap;
 
   // Lookup map from cluster item to a new cluster.
-  NSMutableDictionary<MFUWrappingDictionaryKey *, id<MFUCluster>> *_itemToNewClusterMap;
+  NSMutableDictionary<MFWrappingDictionaryKey *, id<MFCluster>> *_itemToNewClusterMap;
 }
 
 - (instancetype)initWithMapView:(MFMapView *)mapView
-           clusterIconGenerator:(id<MFUClusterIconGenerator>)iconGenerator {
+           clusterIconGenerator:(id<MFClusterIconGenerator>)iconGenerator {
   if ((self = [super init])) {
     _mapView = mapView;
     _mutableMarkers = [[NSMutableArray<MFMarker *> alloc] init];
@@ -56,9 +56,9 @@ static const double kMFUAnimationDuration = 0.5;  // seconds.
     _renderedClusters = [[NSMutableSet alloc] init];
     _renderedClusterItems = [[NSMutableSet alloc] init];
     _animatesClusters = YES;
-    _minimumClusterSize = kMFUMinClusterSize;
-    _maximumClusterZoom = kMFUMaxClusterZoom;
-    _animationDuration = kMFUAnimationDuration;
+    _minimumClusterSize = kMFMinClusterSize;
+    _maximumClusterZoom = kMFMaxClusterZoom;
+    _animationDuration = kMFAnimationDuration;
 
     _zIndex = 1;
   }
@@ -69,13 +69,13 @@ static const double kMFUAnimationDuration = 0.5;  // seconds.
   [self clear];
 }
 
-- (BOOL)shouldRenderAsCluster:(id<MFUCluster>)cluster atZoom:(float)zoom {
+- (BOOL)shouldRenderAsCluster:(id<MFCluster>)cluster atZoom:(float)zoom {
   return cluster.count >= _minimumClusterSize && zoom <= _maximumClusterZoom;
 }
 
-#pragma mark MFUClusterRenderer
+#pragma mark MFClusterRenderer
 
-- (void)renderClusters:(NSArray<id<MFUCluster>> *)clusters {
+- (void)renderClusters:(NSArray<id<MFCluster>> *)clusters {
   [_renderedClusters removeAllObjects];
   [_renderedClusterItems removeAllObjects];
 
@@ -90,7 +90,7 @@ static const double kMFUAnimationDuration = 0.5;  // seconds.
   }
 }
 
-- (void)renderAnimatedClusters:(NSArray<id<MFUCluster>> *)clusters {
+- (void)renderAnimatedClusters:(NSArray<id<MFCluster>> *)clusters {
   float zoom = _mapView.camera.zoom;
   BOOL isZoomingIn = zoom > _previousZoom;
 
@@ -134,13 +134,13 @@ static const double kMFUAnimationDuration = 0.5;  // seconds.
     }
 
     // Find a candidate cluster to animate to.
-    id<MFUCluster> toCluster = nil;
-    if ([marker.userData conformsToProtocol:@protocol(MFUCluster)]) {
-      id<MFUCluster> cluster = (id<MFUCluster>)marker.userData;
+    id<MFCluster> toCluster = nil;
+    if ([marker.userData conformsToProtocol:@protocol(MFCluster)]) {
+      id<MFCluster> cluster = (id<MFCluster>)marker.userData;
       toCluster = [self overlappingClusterForCluster:cluster itemMap:_itemToNewClusterMap];
     } else {
-      MFUWrappingDictionaryKey *key =
-          [[MFUWrappingDictionaryKey alloc] initWithObject:marker.userData];
+      MFWrappingDictionaryKey *key =
+          [[MFWrappingDictionaryKey alloc] initWithObject:marker.userData];
       toCluster = [_itemToNewClusterMap objectForKey:key];
     }
     // If there is not near by cluster to animate to, do not perform animation.
@@ -177,21 +177,21 @@ static const double kMFUAnimationDuration = 0.5;  // seconds.
 #pragma mark Private
 
 // Builds lookup map for item to old clusters, new clusters.
-- (void)prepareClustersForAnimation:(NSArray<id<MFUCluster>> *)newClusters
+- (void)prepareClustersForAnimation:(NSArray<id<MFCluster>> *)newClusters
                         isZoomingIn:(BOOL)isZoomingIn {
   float zoom = _mapView.camera.zoom;
 
   if (isZoomingIn) {
     _itemToOldClusterMap =
-        [[NSMutableDictionary<MFUWrappingDictionaryKey *, id<MFUCluster>> alloc] init];
-    for (id<MFUCluster> cluster in _clusters) {
+        [[NSMutableDictionary<MFWrappingDictionaryKey *, id<MFCluster>> alloc] init];
+    for (id<MFCluster> cluster in _clusters) {
       if (![self shouldRenderAsCluster:cluster atZoom:zoom]
           && ![self shouldRenderAsCluster:cluster atZoom:_previousZoom]) {
         continue;
       }
-      for (id<MFUClusterItem> clusterItem in cluster.items) {
-        MFUWrappingDictionaryKey *key =
-            [[MFUWrappingDictionaryKey alloc] initWithObject:clusterItem];
+      for (id<MFClusterItem> clusterItem in cluster.items) {
+        MFWrappingDictionaryKey *key =
+            [[MFWrappingDictionaryKey alloc] initWithObject:clusterItem];
         [_itemToOldClusterMap setObject:cluster forKey:key];
       }
     }
@@ -199,12 +199,12 @@ static const double kMFUAnimationDuration = 0.5;  // seconds.
   } else {
     _itemToOldClusterMap = nil;
     _itemToNewClusterMap =
-        [[NSMutableDictionary<MFUWrappingDictionaryKey *, id<MFUCluster>> alloc] init];
-    for (id<MFUCluster> cluster in newClusters) {
+        [[NSMutableDictionary<MFWrappingDictionaryKey *, id<MFCluster>> alloc] init];
+    for (id<MFCluster> cluster in newClusters) {
       if (![self shouldRenderAsCluster:cluster atZoom:zoom]) continue;
-      for (id<MFUClusterItem> clusterItem in cluster.items) {
-        MFUWrappingDictionaryKey *key =
-            [[MFUWrappingDictionaryKey alloc] initWithObject:clusterItem];
+      for (id<MFClusterItem> clusterItem in cluster.items) {
+        MFWrappingDictionaryKey *key =
+            [[MFWrappingDictionaryKey alloc] initWithObject:clusterItem];
         [_itemToNewClusterMap setObject:cluster forKey:key];
       }
     }
@@ -214,24 +214,24 @@ static const double kMFUAnimationDuration = 0.5;  // seconds.
 // Goes through each cluster |clusters| and add a marker for it if it is:
 // - inside the visible region of the camera.
 // - not yet already added.
-- (void)addOrUpdateClusters:(NSArray<id<MFUCluster>> *)clusters animated:(BOOL)animated {
+- (void)addOrUpdateClusters:(NSArray<id<MFCluster>> *)clusters animated:(BOOL)animated {
   MFCoordinateBounds *visibleBounds = [_mapView getBounds];
 
-  for (id<MFUCluster> cluster in clusters) {
+  for (id<MFCluster> cluster in clusters) {
     if ([_renderedClusters containsObject:cluster]) continue;
 
     BOOL shouldShowCluster = [visibleBounds contains:cluster.position];
     BOOL shouldRenderAsCluster = [self shouldRenderAsCluster:cluster atZoom: _mapView.camera.zoom];
 
     if (!shouldShowCluster) {
-      for (id<MFUClusterItem> item in cluster.items) {
+      for (id<MFClusterItem> item in cluster.items) {
         if (!shouldRenderAsCluster && [visibleBounds contains:item.position]) {
           shouldShowCluster = YES;
           break;
         }
         if (animated) {
-          MFUWrappingDictionaryKey *key = [[MFUWrappingDictionaryKey alloc] initWithObject:item];
-          id<MFUCluster> oldCluster = [_itemToOldClusterMap objectForKey:key];
+          MFWrappingDictionaryKey *key = [[MFWrappingDictionaryKey alloc] initWithObject:item];
+          id<MFCluster> oldCluster = [_itemToOldClusterMap objectForKey:key];
           if (oldCluster != nil && [visibleBounds contains:oldCluster.position]) {
             shouldShowCluster = YES;
             break;
@@ -245,12 +245,12 @@ static const double kMFUAnimationDuration = 0.5;  // seconds.
   }
 }
 
-- (void)renderCluster:(id<MFUCluster>)cluster animated:(BOOL)animated {
+- (void)renderCluster:(id<MFCluster>)cluster animated:(BOOL)animated {
   float zoom = _mapView.camera.zoom;
   if ([self shouldRenderAsCluster:cluster atZoom:zoom]) {
     CLLocationCoordinate2D fromPosition = kCLLocationCoordinate2DInvalid;
     if (animated) {
-      id<MFUCluster> fromCluster =
+      id<MFCluster> fromCluster =
           [self overlappingClusterForCluster:cluster itemMap:_itemToOldClusterMap];
       animated = fromCluster != nil;
       fromPosition = fromCluster.position;
@@ -264,17 +264,17 @@ static const double kMFUAnimationDuration = 0.5;  // seconds.
                                         animated:animated];
     [_mutableMarkers addObject:marker];
   } else {
-    for (id<MFUClusterItem> item in cluster.items) {
+    for (id<MFClusterItem> item in cluster.items) {
       MFMarker *marker;
       if ([item class] == [MFMarker class]) {
-        marker = (MFMarker<MFUClusterItem> *)item;
+        marker = (MFMarker<MFClusterItem> *)item;
         marker.map = _mapView;
       } else {
         CLLocationCoordinate2D fromPosition = kCLLocationCoordinate2DInvalid;
         BOOL shouldAnimate = animated;
         if (shouldAnimate) {
-          MFUWrappingDictionaryKey *key = [[MFUWrappingDictionaryKey alloc] initWithObject:item];
-          id<MFUCluster> fromCluster = [_itemToOldClusterMap objectForKey:key];
+          MFWrappingDictionaryKey *key = [[MFWrappingDictionaryKey alloc] initWithObject:item];
+          id<MFCluster> fromCluster = [_itemToOldClusterMap objectForKey:key];
           shouldAnimate = fromCluster != nil;
           fromPosition = fromCluster.position;
         }
@@ -341,11 +341,11 @@ static const double kMFUAnimationDuration = 0.5;  // seconds.
 }
 
 // Returns clusters which should be rendered and is inside the camera visible region.
-- (NSArray<id<MFUCluster>> *)visibleClustersFromClusters:(NSArray<id<MFUCluster>> *)clusters {
+- (NSArray<id<MFCluster>> *)visibleClustersFromClusters:(NSArray<id<MFCluster>> *)clusters {
   NSMutableArray *visibleClusters = [[NSMutableArray alloc] init];
   float zoom = _mapView.camera.zoom;
   MFCoordinateBounds *visibleBounds = [_mapView getBounds];
-  for (id<MFUCluster> cluster in clusters) {
+  for (id<MFCluster> cluster in clusters) {
     if (![visibleBounds contains:cluster.position]) continue;
     if (![self shouldRenderAsCluster:cluster atZoom:zoom]) continue;
     [visibleClusters addObject:cluster];
@@ -355,13 +355,13 @@ static const double kMFUAnimationDuration = 0.5;  // seconds.
 
 // Returns the first cluster in |itemMap| that shares a common item with the input |cluster|.
 // Used for heuristically finding candidate cluster to animate to/from.
-- (id<MFUCluster>)overlappingClusterForCluster:
-    (id<MFUCluster>)cluster
-        itemMap:(NSDictionary<MFUWrappingDictionaryKey *, id<MFUCluster>> *)itemMap {
-  id<MFUCluster> found = nil;
-  for (id<MFUClusterItem> item in cluster.items) {
-    MFUWrappingDictionaryKey *key = [[MFUWrappingDictionaryKey alloc] initWithObject:item];
-    id<MFUCluster> candidate = [itemMap objectForKey:key];
+- (id<MFCluster>)overlappingClusterForCluster:
+    (id<MFCluster>)cluster
+        itemMap:(NSDictionary<MFWrappingDictionaryKey *, id<MFCluster>> *)itemMap {
+  id<MFCluster> found = nil;
+  for (id<MFClusterItem> item in cluster.items) {
+    MFWrappingDictionaryKey *key = [[MFWrappingDictionaryKey alloc] initWithObject:item];
+    id<MFCluster> candidate = [itemMap objectForKey:key];
     if (candidate != nil) {
       found = candidate;
       break;
@@ -383,7 +383,7 @@ static const double kMFUAnimationDuration = 0.5;  // seconds.
 
 - (void)clearMarkers:(NSArray<MFMarker *> *)markers {
   for (MFMarker *marker in markers) {
-    if ([marker.userData conformsToProtocol:@protocol(MFUCluster)]) {
+    if ([marker.userData conformsToProtocol:@protocol(MFCluster)]) {
       marker.userData = nil;
     }
     marker.map = nil;

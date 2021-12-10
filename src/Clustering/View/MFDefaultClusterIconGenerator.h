@@ -1,7 +1,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "MFUClusterIconGenerator.h"
+#import "MFClusterIconGenerator.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
  * and have the '100+' icon shown.
  * This caches already generated icons for performance reasons.
  */
-@interface MFUDefaultClusterIconGenerator : NSObject<MFUClusterIconGenerator>
+@interface MFDefaultClusterIconGenerator : NSObject<MFClusterIconGenerator>
 
 /**
  * Initializes the object with default buckets and auto generated background images.

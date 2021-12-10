@@ -16,7 +16,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  NSAssert(false, @"Provide a valid key registered with the demo app bundle id. Then delete this line.")
+  NSAssert(false, @"Provide a valid key registered with the demo app bundle id. Then delete this line.");
   [MFServices provideAccessKey:@""];
   return YES;
 }

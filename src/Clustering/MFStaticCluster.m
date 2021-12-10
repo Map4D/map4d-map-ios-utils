@@ -2,10 +2,10 @@
 #error "This file requires ARC support."
 #endif
 
-#import "MFUStaticCluster.h"
+#import "MFStaticCluster.h"
 
-@implementation MFUStaticCluster {
-  NSMutableArray<id<MFUClusterItem>> *_items;
+@implementation MFStaticCluster {
+  NSMutableArray<id<MFClusterItem>> *_items;
 }
 
 - (instancetype)initWithPosition:(CLLocationCoordinate2D)position {
@@ -20,15 +20,15 @@
   return _items.count;
 }
 
-- (NSArray<id<MFUClusterItem>> *)items {
+- (NSArray<id<MFClusterItem>> *)items {
   return [_items copy];
 }
 
-- (void)addItem:(id<MFUClusterItem>)item {
+- (void)addItem:(id<MFClusterItem>)item {
   [_items addObject:item];
 }
 
-- (void)removeItem:(id<MFUClusterItem>)item {
+- (void)removeItem:(id<MFClusterItem>)item {
   [_items removeObject:item];
 }
 

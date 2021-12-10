@@ -16,7 +16,7 @@ let kCameraLongitude = 108.032432;
 class ViewController: UIViewController, MFMapViewDelegate {
   
   private var mapView: MFMapView!
-  private var clusterManager: MFUClusterManager!
+  private var clusterManager: MFClusterManager!
   
   override func loadView() {
     super.loadView()
@@ -32,10 +32,10 @@ class ViewController: UIViewController, MFMapViewDelegate {
     super.viewDidLoad()
     
     // Set up the cluster manager with default icon generator and renderer.
-    let iconGenerator = MFUDefaultClusterIconGenerator()
-    let algorithm = MFUNonHierarchicalDistanceBasedAlgorithm()
-    let renderer = MFUDefaultClusterRenderer(mapView: mapView, clusterIconGenerator: iconGenerator)
-    clusterManager = MFUClusterManager(map: mapView, algorithm: algorithm, renderer: renderer)
+    let iconGenerator = MFDefaultClusterIconGenerator()
+    let algorithm = MFNonHierarchicalDistanceBasedAlgorithm()
+    let renderer = MFDefaultClusterRenderer(mapView: mapView, clusterIconGenerator: iconGenerator)
+    clusterManager = MFClusterManager(map: mapView, algorithm: algorithm, renderer: renderer)
     
     // Register self to listen to GMSMapViewDelegate events.
     clusterManager.setMapDelegate(self)
@@ -49,7 +49,7 @@ class ViewController: UIViewController, MFMapViewDelegate {
   
   func mapview(_ mapView: MFMapView!, didTap marker: MFMarker!) -> Bool {
     mapView.animateCamera(MFCameraUpdate.setTarget(marker.position))
-    if let _ = marker.userData as? MFUCluster {
+    if let _ = marker.userData as? MFCluster {
       mapView.animateCamera(MFCameraUpdate.setTarget(mapView.camera!.target, zoom: mapView.camera!.zoom + 1))
       NSLog("Did tap marker cluster")
       return true

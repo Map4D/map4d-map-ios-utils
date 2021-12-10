@@ -3,7 +3,7 @@
 /**
  * This protocol defines the contract for a cluster item.
  */
-@protocol MFUClusterItem <NSObject>
+@protocol MFClusterItem <NSObject>
 
 /**
  * Returns the position of the item.

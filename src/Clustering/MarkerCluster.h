@@ -1,17 +1,17 @@
-#import "MFUCluster.h"
-#import "MFUClusterItem.h"
-#import "MFUClusterManager.h"
+#import "MFCluster.h"
+#import "MFClusterItem.h"
+#import "MFClusterManager.h"
 
-#import "MFUDefaultClusterIconGenerator.h"
-#import "MFUDefaultClusterRenderer.h"
+#import "MFDefaultClusterIconGenerator.h"
+#import "MFDefaultClusterRenderer.h"
 
-#import "MFUGridBasedClusterAlgorithm.h"
-#import "MFUNonHierarchicalDistanceBasedAlgorithm.h"
-#import "MFUSimpleClusterAlgorithm.h"
+#import "MFGridBasedClusterAlgorithm.h"
+#import "MFNonHierarchicalDistanceBasedAlgorithm.h"
+#import "MFSimpleClusterAlgorithm.h"
 
-#import "MFUStaticCluster.h"
+#import "MFStaticCluster.h"
 #import "GQTPointQuadTree.h"
 
 //#import "GQTPointQuadTreeChild.h"
-//#import "MFUWrappingDictionaryKey.h"
-//#import "MFMarker+MFUClusterItem.h"
+//#import "MFWrappingDictionaryKey.h"
+//#import "MFMarker+MFClusterItem.h"

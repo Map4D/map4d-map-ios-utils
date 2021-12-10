@@ -2,9 +2,9 @@
 #error "This file requires ARC support."
 #endif
 
-#import "MFUWrappingDictionaryKey.h"
+#import "MFWrappingDictionaryKey.h"
 
-@implementation MFUWrappingDictionaryKey {
+@implementation MFWrappingDictionaryKey {
   id _object;
 }
 
@@ -16,7 +16,7 @@
 }
 
 - (id)copyWithZone:(NSZone *)zone {
-  MFUWrappingDictionaryKey *newKey = [[self class] allocWithZone:zone];
+  MFWrappingDictionaryKey *newKey = [[self class] allocWithZone:zone];
   if (newKey) {
     newKey->_object = _object;
   }
@@ -34,7 +34,7 @@
 
   if ([object class] != [self class]) return NO;
 
-  MFUWrappingDictionaryKey *other = (MFUWrappingDictionaryKey *)object;
+  MFWrappingDictionaryKey *other = (MFWrappingDictionaryKey *)object;
   return [_object isEqual:other->_object];
 }
 

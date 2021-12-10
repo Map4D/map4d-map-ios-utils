@@ -2,7 +2,7 @@
 #error "This file requires ARC support."
 #endif
 
-#import "MFUDefaultClusterIconGenerator.h"
+#import "MFDefaultClusterIconGenerator.h"
 
 #define UIColorFromHEX(hexValue)                                         \
   [UIColor colorWithRed:((CGFloat)((hexValue & 0xff0000) >> 16)) / 255.0 \
@@ -11,9 +11,9 @@
                   alpha:1.0]
 
 // Default bucket background colors when no background images are set.
-static NSArray<UIColor *> *kMFUBucketBackgroundColors;
+static NSArray<UIColor *> *kMFBucketBackgroundColors;
 
-@implementation MFUDefaultClusterIconGenerator {
+@implementation MFDefaultClusterIconGenerator {
   NSCache *_iconCache;
   NSArray<NSNumber *> *_buckets;
   NSArray<UIImage *> *_backgroundImages;
@@ -21,7 +21,7 @@ static NSArray<UIColor *> *kMFUBucketBackgroundColors;
 }
 
 + (void)initialize {
-  kMFUBucketBackgroundColors = @[
+  kMFBucketBackgroundColors = @[
     UIColorFromHEX(0x0099cc),
     UIColorFromHEX(0x669900),
     UIColorFromHEX(0xff8800),
@@ -34,7 +34,7 @@ static NSArray<UIColor *> *kMFUBucketBackgroundColors;
   if ((self = [super init]) != nil) {
     _iconCache = [[NSCache alloc] init];
     _buckets = @[ @10, @50, @100, @200, @1000 ];
-    _backgroundColors = [kMFUBucketBackgroundColors copy];
+    _backgroundColors = [kMFBucketBackgroundColors copy];
   }
   return self;
 }
