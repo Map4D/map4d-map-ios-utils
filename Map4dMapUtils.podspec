@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'Map4dMapUtils'
-  s.version          = '0.1.0'
+  s.version          = '0.1.1'
   s.summary          = 'A utilities library for use with Map4dMap SDK for iOS.'
   s.description      = <<-DESC
   This library contains classes that are useful for a wide range of applications using the Map4dMap SDK for iOS.
@@ -24,6 +24,6 @@ Pod::Spec.new do |s|
   s.source_files         = "src/**/*.{h,m,swift}"
   
   # Dependencies
-  s.dependency 'Map4dMap', '~> 2.0.5'
+  s.dependency 'Map4dMap', '~> 2.0.6'
   
 end
