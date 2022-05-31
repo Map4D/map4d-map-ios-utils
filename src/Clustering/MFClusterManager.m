@@ -138,9 +138,9 @@ static const double kMFClusterWaitIntervalSeconds = 0.2;
   }
 }
 
-- (void)mapView:(MFMapView *)mapView onModeChange:(bool)is3DMode {
-  if ([_mapDelegate respondsToSelector:@selector(mapView:onModeChange:)]) {
-    [_mapDelegate mapView:mapView onModeChange:is3DMode];
+- (void)mapView:(MFMapView *)mapView didReachLimitedZoom:(double)zoom {
+  if ([_mapDelegate respondsToSelector:@selector(mapView:didReachLimitedZoom:)]) {
+    [_mapDelegate mapView:mapView didReachLimitedZoom:zoom];
   }
 }
 
@@ -221,13 +221,6 @@ static const double kMFClusterWaitIntervalSeconds = 0.2;
   if ([_mapDelegate respondsToSelector:@selector(mapView:didTapDirectionsRenderer:routeIndex:)]) {
     [_mapDelegate mapView:mapView didTapDirectionsRenderer:renderer routeIndex:routeIndex];
   }
-}
-
-- (BOOL)shouldChangeMapModeForMapView:(MFMapView *)mapView {
-  if ([_mapDelegate respondsToSelector:@selector(shouldChangeMapModeForMapView:)]) {
-    [_mapDelegate shouldChangeMapModeForMapView:mapView];
-  }
-  return NO;
 }
 
 - (void)mapview:(MFMapView *)mapView didBeginDraggingMarker:(MFMarker *)marker {
