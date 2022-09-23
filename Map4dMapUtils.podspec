@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'Map4dMapUtils'
-  s.version          = '0.2.0'
+  s.version          = '0.2.1'
   s.summary          = 'A utilities library for use with Map4dMap SDK for iOS.'
   s.description      = <<-DESC
   This library contains classes that are useful for a wide range of applications using the Map4dMap SDK for iOS.
@@ -16,7 +16,6 @@ Pod::Spec.new do |s|
   s.requires_arc     = true
   s.static_framework = true
 
-  s.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }
   s.pod_target_xcconfig  = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }
   
   s.private_header_files = "src/*/Private/*.h"
