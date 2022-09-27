@@ -2,70 +2,70 @@
 #error "This file requires ARC support."
 #endif
 
-#import "GQTPointQuadTreeChild.h"
+#import "MFQTPointQuadTreeChild.h"
 
 static const unsigned kMaxElements = 64;
 static const unsigned kMaxDepth = 30;
 
-#include "GQTBounds.h"
+#include "MFQTBounds.h"
 
-static GQTPoint boundsMidpoint(GQTBounds bounds) {
-  return (GQTPoint){(bounds.minX + bounds.maxX) / 2, (bounds.minY + bounds.maxY) / 2};
+static MFQTPoint boundsMidpoint(MFQTBounds bounds) {
+  return (MFQTPoint){(bounds.minX + bounds.maxX) / 2, (bounds.minY + bounds.maxY) / 2};
 }
 
-static GQTBounds boundsTopRightChildQuadBounds(GQTBounds parentBounds) {
-  GQTPoint midPoint = boundsMidpoint(parentBounds);
+static MFQTBounds boundsTopRightChildQuadBounds(MFQTBounds parentBounds) {
+  MFQTPoint midPoint = boundsMidpoint(parentBounds);
   double minX = midPoint.x;
   double minY = midPoint.y;
   double maxX = parentBounds.maxX;
   double maxY = parentBounds.maxY;
-  return (GQTBounds){minX, minY, maxX, maxY};
+  return (MFQTBounds){minX, minY, maxX, maxY};
 }
 
-static GQTBounds boundsTopLeftChildQuadBounds(GQTBounds parentBounds) {
-  GQTPoint midPoint = boundsMidpoint(parentBounds);
+static MFQTBounds boundsTopLeftChildQuadBounds(MFQTBounds parentBounds) {
+  MFQTPoint midPoint = boundsMidpoint(parentBounds);
   double minX = parentBounds.minX;
   double minY = midPoint.y;
   double maxX = midPoint.x;
   double maxY = parentBounds.maxY;
-  return (GQTBounds){minX, minY, maxX, maxY};
+  return (MFQTBounds){minX, minY, maxX, maxY};
 }
 
-static GQTBounds boundsBottomRightChildQuadBounds(GQTBounds parentBounds) {
-  GQTPoint midPoint = boundsMidpoint(parentBounds);
+static MFQTBounds boundsBottomRightChildQuadBounds(MFQTBounds parentBounds) {
+  MFQTPoint midPoint = boundsMidpoint(parentBounds);
   double minX = midPoint.x;
   double minY = parentBounds.minY;
   double maxX = parentBounds.maxX;
   double maxY = midPoint.y;
-  return (GQTBounds){minX, minY, maxX, maxY};
+  return (MFQTBounds){minX, minY, maxX, maxY};
 }
 
-static GQTBounds boundsBottomLeftChildQuadBounds(GQTBounds parentBounds) {
-  GQTPoint midPoint = boundsMidpoint(parentBounds);
+static MFQTBounds boundsBottomLeftChildQuadBounds(MFQTBounds parentBounds) {
+  MFQTPoint midPoint = boundsMidpoint(parentBounds);
   double minX = parentBounds.minX;
   double minY = parentBounds.minY;
   double maxX = midPoint.x;
   double maxY = midPoint.y;
-  return (GQTBounds){minX, minY, maxX, maxY};
+  return (MFQTBounds){minX, minY, maxX, maxY};
 }
 
-static BOOL boundsIntersectsBounds(GQTBounds bounds1, GQTBounds bounds2) {
+static BOOL boundsIntersectsBounds(MFQTBounds bounds1, MFQTBounds bounds2) {
   return (!(bounds1.maxY < bounds2.minY || bounds2.maxY < bounds1.minY) &&
           !(bounds1.maxX < bounds2.minX || bounds2.maxX < bounds1.minX));
 }
 
-@implementation GQTPointQuadTreeChild {
+@implementation MFQTPointQuadTreeChild {
   /** Top Right child quad. Nil until this node is split. */
-  GQTPointQuadTreeChild *topRight_;
+  MFQTPointQuadTreeChild *topRight_;
 
   /** Top Left child quad. Nil until this node is split. */
-  GQTPointQuadTreeChild *topLeft_;
+  MFQTPointQuadTreeChild *topLeft_;
 
   /** Bottom Right child quad. Nil until this node is split. */
-  GQTPointQuadTreeChild *bottomRight_;
+  MFQTPointQuadTreeChild *bottomRight_;
 
   /** Bottom Left child quad. Nil until this node is split. */
-  GQTPointQuadTreeChild *bottomLeft_;
+  MFQTPointQuadTreeChild *bottomLeft_;
 
   /**
    * Items in this PointQuadTree node, if this node has yet to be split. If we have items, children
@@ -85,11 +85,11 @@ static BOOL boundsIntersectsBounds(GQTBounds bounds1, GQTBounds bounds2) {
   return self;
 }
 
-- (void)add:(id<GQTPointQuadTreeItem>)item
-    withOwnBounds:(GQTBounds)bounds
+- (void)add:(id<MFQTPointQuadTreeItem>)item
+    withOwnBounds:(MFQTBounds)bounds
           atDepth:(NSUInteger)depth {
   if (item == nil) {
-    // Note, this should not happen, as GQTPointQuadTree's add method also does a nil check.
+    // Note, this should not happen, as MFQTPointQuadTree's add method also does a nil check.
     [NSException raise:@"Invalid item argument" format:@"item must not be null"];
   }
 
@@ -98,8 +98,8 @@ static BOOL boundsIntersectsBounds(GQTBounds bounds1, GQTBounds bounds2) {
   }
 
   if (topRight_ != nil) {
-    GQTPoint itemPoint = item.point;
-    GQTPoint midPoint = boundsMidpoint(bounds);
+    MFQTPoint itemPoint = item.point;
+    MFQTPoint midPoint = boundsMidpoint(bounds);
 
     if (itemPoint.y > midPoint.y) {
       if (itemPoint.x > midPoint.x) {
@@ -123,26 +123,26 @@ static BOOL boundsIntersectsBounds(GQTBounds bounds1, GQTBounds bounds2) {
   }
 }
 
-- (void)splitWithOwnBounds:(GQTBounds)ownBounds atDepth:(NSUInteger)depth {
+- (void)splitWithOwnBounds:(MFQTBounds)ownBounds atDepth:(NSUInteger)depth {
   assert(items_ != nil);
 
-  topRight_ = [[GQTPointQuadTreeChild alloc] init];
-  topLeft_ = [[GQTPointQuadTreeChild alloc] init];
-  bottomRight_ = [[GQTPointQuadTreeChild alloc] init];
-  bottomLeft_ = [[GQTPointQuadTreeChild alloc] init];
+  topRight_ = [[MFQTPointQuadTreeChild alloc] init];
+  topLeft_ = [[MFQTPointQuadTreeChild alloc] init];
+  bottomRight_ = [[MFQTPointQuadTreeChild alloc] init];
+  bottomLeft_ = [[MFQTPointQuadTreeChild alloc] init];
 
   NSArray *items = items_;
   items_ = nil;
 
-  for (id<GQTPointQuadTreeItem> item in items) {
+  for (id<MFQTPointQuadTreeItem> item in items) {
     [self add:item withOwnBounds:ownBounds atDepth:depth];
   }
 }
 
-- (BOOL)remove:(id<GQTPointQuadTreeItem>)item withOwnBounds:(GQTBounds)bounds {
+- (BOOL)remove:(id<MFQTPointQuadTreeItem>)item withOwnBounds:(MFQTBounds)bounds {
   if (topRight_ != nil) {
-    GQTPoint itemPoint = item.point;
-    GQTPoint midPoint = boundsMidpoint(bounds);
+    MFQTPoint itemPoint = item.point;
+    MFQTPoint midPoint = boundsMidpoint(bounds);
 
     if (itemPoint.y > midPoint.y) {
       if (itemPoint.x > midPoint.x) {
@@ -168,14 +168,14 @@ static BOOL boundsIntersectsBounds(GQTBounds bounds1, GQTBounds bounds2) {
   }
 }
 
-- (void)searchWithBounds:(GQTBounds)searchBounds
-           withOwnBounds:(GQTBounds)ownBounds
+- (void)searchWithBounds:(MFQTBounds)searchBounds
+           withOwnBounds:(MFQTBounds)ownBounds
                  results:(NSMutableArray *)accumulator {
   if (topRight_ != nil) {
-    GQTBounds topRightBounds = boundsTopRightChildQuadBounds(ownBounds);
-    GQTBounds topLeftBounds = boundsTopLeftChildQuadBounds(ownBounds);
-    GQTBounds bottomRightBounds = boundsBottomRightChildQuadBounds(ownBounds);
-    GQTBounds bottomLeftBounds = boundsBottomLeftChildQuadBounds(ownBounds);
+    MFQTBounds topRightBounds = boundsTopRightChildQuadBounds(ownBounds);
+    MFQTBounds topLeftBounds = boundsTopLeftChildQuadBounds(ownBounds);
+    MFQTBounds bottomRightBounds = boundsBottomRightChildQuadBounds(ownBounds);
+    MFQTBounds bottomLeftBounds = boundsBottomLeftChildQuadBounds(ownBounds);
 
     if (boundsIntersectsBounds(topRightBounds, searchBounds)) {
       [topRight_ searchWithBounds:searchBounds withOwnBounds:topRightBounds results:accumulator];
@@ -194,8 +194,8 @@ static BOOL boundsIntersectsBounds(GQTBounds bounds1, GQTBounds bounds2) {
                             results:accumulator];
     }
   } else {
-    for (id<GQTPointQuadTreeItem> item in items_) {
-      GQTPoint point = item.point;
+    for (id<MFQTPointQuadTreeItem> item in items_) {
+      MFQTPoint point = item.point;
       if (point.x <= searchBounds.maxX && point.x >= searchBounds.minX &&
           point.y <= searchBounds.maxY && point.y >= searchBounds.minY) {
         [accumulator addObject:item];

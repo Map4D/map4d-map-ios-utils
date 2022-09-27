@@ -10,8 +10,8 @@
 #import "MFSimpleClusterAlgorithm.h"
 
 #import "MFStaticCluster.h"
-#import "GQTPointQuadTree.h"
+#import "MFQTPointQuadTree.h"
 
-//#import "GQTPointQuadTreeChild.h"
+//#import "MFQTPointQuadTreeChild.h"
 //#import "MFWrappingDictionaryKey.h"
 //#import "MFMarker+MFClusterItem.h"

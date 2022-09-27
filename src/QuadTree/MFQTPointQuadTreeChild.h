@@ -1,15 +1,15 @@
 #import <Foundation/Foundation.h>
-#import "GQTBounds.h"
-#import "GQTPointQuadTreeItem.h"
+#import "MFQTBounds.h"
+#import "MFQTPointQuadTreeItem.h"
 
 /**
- * This is an internal class, use |GQTPointQuadTree| instead.
+ * This is an internal class, use |MFQTPointQuadTree| instead.
  * Please note, this class is not thread safe.
  *
- * This class represents an internal node of a |GQTPointQuadTree|.
+ * This class represents an internal node of a |MFQTPointQuadTree|.
  */
 
-@interface GQTPointQuadTreeChild : NSObject
+@interface MFQTPointQuadTreeChild : NSObject
 
 /**
  * Insert an item into this PointQuadTreeChild
@@ -18,8 +18,8 @@
  * @param bounds The bounds of this node.
  * @param depth The depth of this node.
  */
-- (void)add:(id<GQTPointQuadTreeItem>)item
-    withOwnBounds:(GQTBounds)bounds
+- (void)add:(id<MFQTPointQuadTreeItem>)item
+    withOwnBounds:(MFQTBounds)bounds
           atDepth:(NSUInteger)depth;
 
 /**
@@ -29,7 +29,7 @@
  * @param bounds The bounds of this node.
  * @return |NO| if the items was not found in the tree, |YES| otherwise.
  */
-- (BOOL)remove:(id<GQTPointQuadTreeItem>)item withOwnBounds:(GQTBounds)bounds;
+- (BOOL)remove:(id<MFQTPointQuadTreeItem>)item withOwnBounds:(MFQTBounds)bounds;
 
 /**
  * Retreive all items in this PointQuadTree within a bounding box.
@@ -38,8 +38,8 @@
  * @param ownBounds    The bounds of this node.
  * @param accumulator  The results of the search.
  */
-- (void)searchWithBounds:(GQTBounds)searchBounds
-           withOwnBounds:(GQTBounds)ownBounds
+- (void)searchWithBounds:(MFQTBounds)searchBounds
+           withOwnBounds:(MFQTBounds)ownBounds
                  results:(NSMutableArray *)accumulator;
 
 /**
@@ -47,6 +47,6 @@
  * @param ownBounds The bounds of this node.
  * @param depth     The depth of this node.
  */
-- (void)splitWithOwnBounds:(GQTBounds)ownBounds atDepth:(NSUInteger)depth;
+- (void)splitWithOwnBounds:(MFQTBounds)ownBounds atDepth:(NSUInteger)depth;
 
 @end

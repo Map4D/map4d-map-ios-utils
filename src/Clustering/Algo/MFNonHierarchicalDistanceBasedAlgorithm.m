@@ -9,14 +9,14 @@
 #import "MFStaticCluster.h"
 #import "MFClusterItem.h"
 #import "MFWrappingDictionaryKey.h"
-#import "GQTPointQuadTree.h"
+#import "MFQTPointQuadTree.h"
 
 static const NSUInteger kMFDefaultClusterDistancePoints = 100;
 static const double kMFMapPointWidth = 2.0;  // MapPoint is in a [-1,1]x[-1,1] space.
 
 #pragma mark Utilities Classes
 
-@interface MFClusterItemQuadItem : NSObject<GQTPointQuadTreeItem>
+@interface MFClusterItemQuadItem : NSObject<MFQTPointQuadTreeItem>
 
 @property(nonatomic, readonly) id<MFClusterItem> clusterItem;
 
@@ -26,7 +26,7 @@ static const double kMFMapPointWidth = 2.0;  // MapPoint is in a [-1,1]x[-1,1] s
 
 @implementation MFClusterItemQuadItem {
   id<MFClusterItem> _clusterItem;
-  GQTPoint _clusterItemPoint;
+  MFQTPoint _clusterItemPoint;
 }
 
 - (instancetype)initWithClusterItem:(id<MFClusterItem>)clusterItem {
@@ -39,7 +39,7 @@ static const double kMFMapPointWidth = 2.0;  // MapPoint is in a [-1,1]x[-1,1] s
   return self;
 }
 
-- (GQTPoint)point {
+- (MFQTPoint)point {
   return _clusterItemPoint;
 }
 
@@ -64,7 +64,7 @@ static const double kMFMapPointWidth = 2.0;  // MapPoint is in a [-1,1]x[-1,1] s
 
 @implementation MFNonHierarchicalDistanceBasedAlgorithm {
   NSMutableArray<id<MFClusterItem>> *_items;
-  GQTPointQuadTree *_quadTree;
+  MFQTPointQuadTree *_quadTree;
   NSUInteger _clusterDistancePoints;
 }
 
@@ -75,8 +75,8 @@ static const double kMFMapPointWidth = 2.0;  // MapPoint is in a [-1,1]x[-1,1] s
 - (instancetype)initWithClusterDistancePoints:(NSUInteger)clusterDistancePoints {
     if ((self = [super init])) {
       _items = [[NSMutableArray alloc] init];
-      GQTBounds bounds = {-1, -1, 1, 1};
-      _quadTree = [[GQTPointQuadTree alloc] initWithBounds:bounds];
+      MFQTBounds bounds = {-1, -1, 1, 1};
+      _quadTree = [[MFQTPointQuadTree alloc] initWithBounds:bounds];
       _clusterDistancePoints = clusterDistancePoints;
     }
     return self;
@@ -131,7 +131,7 @@ static const double kMFMapPointWidth = 2.0;  // MapPoint is in a [-1,1]x[-1,1] s
     // Query for items within a fixed point distance from the current item to make up a cluster
     // around it.
     double radius = _clusterDistancePoints * kMFMapPointWidth / pow(2.0, zoom + 8.0);
-    GQTBounds bounds = {point.x - radius, point.y - radius, point.x + radius, point.y + radius};
+    MFQTBounds bounds = {point.x - radius, point.y - radius, point.x + radius, point.y + radius};
     NSArray *nearbyItems = [_quadTree searchWithBounds:bounds];
     for (MFClusterItemQuadItem *quadItem in nearbyItems) {
       id<MFClusterItem> nearbyItem = quadItem.clusterItem;
