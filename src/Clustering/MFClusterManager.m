@@ -248,6 +248,18 @@ static const double kMFClusterWaitIntervalSeconds = 0.2;
   return NO;
 }
 
+- (void)mapView:(MFMapView *)mapView didTapGeoJSON:(MFGeoJSON *)geoJSON feature:(MFGeoJSONFeature *)feature {
+  if ([_mapDelegate respondsToSelector:@selector(mapView:didTapGeoJSON:feature:)]) {
+    [_mapDelegate mapView:mapView didTapGeoJSON:geoJSON feature:feature];
+  }
+}
+
+- (void)mapView:(MFMapView *)mapView didTapDataSourceFeature:(MFDataSourceFeature *)feature location:(CLLocationCoordinate2D)location {
+  if ([_mapDelegate respondsToSelector:@selector(mapView:didTapDataSourceFeature:location:)]) {
+    [_mapDelegate mapView:mapView didTapDataSourceFeature:feature location:location];
+  }
+}
+
 #pragma mark Testing
 
 - (NSUInteger)clusterRequestCount {
